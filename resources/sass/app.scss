@@ -6,3 +6,18 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+@import "navbar";
+
+@import "photo/index";
+@import "photo/show";
+@import "photo/create";
+
+@import "profile/show";
+@import "profile/edit";
+
+@import "news/index";
+
+@import "contact/index";
+
+@import "about/index";

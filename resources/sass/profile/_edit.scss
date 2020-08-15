@@ -1,0 +1,25 @@
+.profile-edit {
+    .container {
+        max-width: 840px;
+    }
+    .user-img {
+        object-fit: cover;
+        object-position: center;
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+    }
+    .profile-area {
+        padding: 0px 32px;
+        margin: 16px 0px;
+    }
+    .text-area {
+        margin: 16px 0px;
+    }
+    .nav-item {
+        padding: 16px;
+    }
+    .profile-item {
+        margin-bottom: 24px;
+    }
+}

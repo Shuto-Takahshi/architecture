@@ -1,0 +1,19 @@
+.contact-index {
+    .container {
+        max-width: 840px;
+    }
+    .contact-top {
+        padding: 24px 0px 24px 0px;
+    }
+    .contact-title {
+        font-size: 24px;
+    }
+    .contact-item {
+        margin: 32px;
+    }
+    .contact-btn  {
+        @media (max-width:767px) {
+            width: 100%;
+        }
+    }
+}

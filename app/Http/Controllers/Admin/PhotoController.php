@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PhotoController extends Controller
 {
@@ -14,7 +15,7 @@ class PhotoController extends Controller
     public function index()
     {
         //
-        return view('photo.index');
+        return view('admin.photo.index');
     }
 
     /**
@@ -25,7 +26,7 @@ class PhotoController extends Controller
     public function create()
     {
         //
-        return view('photo.create');
+        return view('admin.photo.create');
     }
 
     /**
@@ -37,7 +38,7 @@ class PhotoController extends Controller
     public function store(Request $request)
     {
         //
-        return redirect('photo/index');
+        return redirect('admin/photo/index');
     }
 
     /**
@@ -46,13 +47,10 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-
-    //public function show($id)
-    public function show()
+    public function show($id)
     {
         //
-        return view('photo.show');
+        return view('admin.photo.show');
     }
 
     /**
@@ -64,7 +62,7 @@ class PhotoController extends Controller
     public function edit($id)
     {
         //
-        return view('photo.edit');
+        return view('admin.photo.edit');
     }
 
     /**
@@ -77,7 +75,7 @@ class PhotoController extends Controller
     public function update(Request $request, $id)
     {
         //
-        return redirect('photo/show/{id}');
+        return redirect('admin/photo/show/{id}');
     }
 
     /**

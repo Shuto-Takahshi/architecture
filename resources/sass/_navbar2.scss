@@ -1,0 +1,55 @@
+.navbar {
+    .nav {
+        position: relative;
+    }
+    #search-input {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+        div {
+            height: 49px;
+            .form-control {
+                width: 100%;
+            }
+        }
+    }
+    .login-btn {
+        font-size: 14px;
+        padding: 6px 12px;
+        @media (max-width:767px) {
+            display: none;;
+        }
+    }
+    .register-btn {
+        font-size: 14px;
+        padding: 6px 12px;
+        @media (max-width:767px) {
+            display: none;;
+        }
+
+    }
+    .menu-btn {
+        @media (min-width:767px) {
+            display: none;;
+        }
+    }
+    .dropdown-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+    }
+    .dropdown-btn:hover {
+        opacity: 0.9;
+        background-color: whitesmoke;
+    }
+    .dropdown-menu
+    a {
+        font-size: 14px;
+        color: black;
+    }
+    .btn {
+        padding: 6px 12px;
+    }
+}
+
