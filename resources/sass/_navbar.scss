@@ -24,17 +24,10 @@
     }
     .auth-btn a {
         font-size: 14px;
-        padding: 4px 8px;
         @media (max-width:767px) {
             font-size: 12px;
         }
     }
-    // .menu-btn {
-    //     @media (min-width:767px) {
-    //         display: none;;
-    //     }
-    // }
-
     .user-img {
         width: 32px;
         height: 32px;
@@ -50,9 +43,6 @@
         a {
             font-size: 14px;
             color: black;
-        }
-        .btn {
-            padding: 6px 12px;
         }
     }
 }

@@ -2,8 +2,8 @@
 
 
 <nav class="navbar navbar-expand navbar-light border-bottom py-1 bg-white fixed-top px-md-4">
-    <div class="navbar-brand mr-3 home">
-        <a class="" href="">ArchiGallery</a>
+    <div class="navbar-brand home">
+        <a class="" href="{{ route('photo.index') }}">ArchiGallery</a>
     </div>
 
     {{-- form --}}
@@ -19,32 +19,39 @@
     </form> --}}
 
     <ul class="navbar-nav ml-auto" style="z-index: -1">
-        <li class="nav-item ml-auto search-btn">
+        <li class="nav-item search-btn">
             <button class="btn p-0 mr-2" type="button" onclick="clickBtn()">
                 <i class="fas fa-search my-auto text-muted"></i>
             </button>
         </li>
+
+        {{-- 新規登録/ログイン --}}
+        @guest
         <li class="nav-item mr-2 my-auto auth-btn">
-            {{-- 新規登録/ログイン --}}
-            <a class="btn" href="">ログイン</a>
-            <a class="btn btn-primary text-white m-0" href="">新規登録</a>
+            <a class="btn p-0" href="{{ route('login') }}">ログイン</a>
+            <a class="btn btn-primary text-white m-0" href="{{ route('register')}}">新規登録</a>
         </li>
+        @endguest
+
+        {{-- ユーザーアイコン --}}
+        @auth
         <li class="nav-item mr-2">
             <div class="dropdown">
-                {{-- ユーザー --}}
                 <button class="btn shadow-none p-0 m-0 dropdown-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="user-img" src="{{ asset('/images/blank_profile.png') }}" alt="image">
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li class="p-2">
-                        <a class="" href="#">プロフィール</a>
+                    <a class="" href="{{ route('user.show') }}">プロフィール</a>
                     </li>
                     <li class="p-2">
-                        <a class="" href="#">ログアウト</a>
+                    <a class="" href="{{ route('logout') }}">ログアウト</a>
                     </li>
                 </ul>
             </div>
         </li>
+        @endauth
+
         <li class="nav-item">
             <div class="dropdown">
                 <button class="btn shadow-none p-0 m-0 text-center dropdown-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -71,11 +78,7 @@
                 </ul>
             </div>
         </li>
-        <li class="nav-item">
-        </li>
     </ul>
-
-    </div>
 </nav>
 
 <script>

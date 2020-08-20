@@ -20,16 +20,12 @@
                 <div class="p-2">
                     <div class="photo-item my-auto">
                         {{-- <button class="btn shadow-none border px-3 py-1"><i class="far fa-heart"></i></button> --}}
-                        <i class="far fa-heart mr-2"></i>
-                        <i class="far fa-bookmark mr-2"></i>
+                        <i class="far fa-heart"></i>
                     </div>
                     {{-- タイトル --}}
                     <div class="photo-item">
                         <p class="mb-0 photo-title">投稿のタイトル</p>
                         {{-- <a class="ml-auto my-auto" href=""><i class="fas fa-ellipsis-h"></i></a> --}}
-                        <div class="d-flex">
-                            <i class="fas fa-map-marker-alt my-auto mr-2"></i>東京都渋谷区
-                        </div>
                     </div>
                     <div class="photo-item">
                         <p class="font-weight-light mb-0 photo-content">投稿の内容。投稿の内容。投稿の内容。投稿の内容。投稿の内容。投稿の内容。投稿の内容。投稿の内容。投稿の内容。投稿の内容。投稿の内容。投稿の内容。投稿の内容。投稿の内容。</p>
@@ -39,6 +35,9 @@
                         <a href="" class="bg-light rounded border text-dark photo-tag">タグ1</a>
                         <a href="" class="bg-light rounded border text-dark photo-tag">タグ2</a>
                         <a href="" class="bg-light rounded border text-dark photo-tag">タグ3</a>
+                    </div>
+                    <div class="">
+                        <i class="fas fa-map-marker-alt mr-2"></i>東京都渋谷区
                     </div>
                 </div>
             </div>

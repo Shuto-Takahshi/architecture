@@ -15,6 +15,8 @@
 //     return view('welcome');
 // });
 
+Auth::routes();
+
 // 一般ユーザー
 Route::group(['prefix' => 'photo'], function() {
     Route::get('index', 'PhotoController@index')->name('photo.index');
@@ -22,7 +24,7 @@ Route::group(['prefix' => 'photo'], function() {
     Route::post('store', 'PhotoController@store')->name('photo.store');
 
     // Route::get('show/{id}', 'PhotoController@show')->name('photo.show');
-    Route::get('show', 'PhotoController@show')->name('photo.show');
+    Route::get('show/{user_id}', 'PhotoController@show')->name('photo.show');
 
     Route::get('edit/{id}', 'PhotoController@edit')->name('photo.edit');
     Route::post('update/{id}', 'PhotoController@update')->name('photo.update');
@@ -32,13 +34,12 @@ Route::group(['prefix' => 'photo'], function() {
     Route::delete('like/{id}', 'PhotoController@unlike')->name('photo.unlike');
 });
 
-Route::group(['prefix' => 'profile'], function() {
-    // Route::get('show/{id}', 'ProfileController@show')->name('profile.show');
-    Route::get('show', 'ProfileController@show')->name('profile.show');
+Route::group(['prefix' => 'user'], function() {
+    Route::get('show', 'UserController@show')->name('user.show');
 
     // Route::get('edit/{id}', 'ProfileController@edit')->name('profile.edit');
-    Route::get('edit/', 'ProfileController@edit')->name('profile.edit');
-    Route::post('update/{id}', 'ProfileController@update')->name('profile.update');
+    Route::get('edit/', 'UserController@edit')->name('user.edit');
+    Route::post('update/{id}', 'UserController@update')->name('user.update');
 });
 
 // Route::group(['prefix' => 'news'], function() {
@@ -71,12 +72,12 @@ Route::group(['prefix' => 'admin'], function() {
         Route::delete('like/{id}', 'Admin\PhotoController@unlike')->name('admin.photo.unlike');
     });
 
-    Route::group(['prefix' => 'profile'], function() {
-        Route::get('index', 'Admin\ProfileController@index')->name('admin.profile.index');
-        Route::get('show/{id}', 'Admin\ProfileController@show')->name('admin.profile.show');
-        Route::get('edit/{id}', 'Admin\ProfileController@edit')->name('admin.profile.edit');
-        Route::post('update/{id}', 'Admin\ProfileController@update')->name('admin.profile.update');
-        Route::post('destroy/{id}', 'Admin\ProfileController@destroy')->name('admin.profile.destroy');
+    Route::group(['prefix' => 'user'], function() {
+        Route::get('index', 'Admin\UserController@index')->name('admin.user.index');
+        Route::get('show/{id}', 'Admin\UserController@show')->name('admin.user.show');
+        Route::get('edit/{id}', 'Admin\UserController@edit')->name('admin.user.edit');
+        Route::post('update/{id}', 'Admin\UserController@update')->name('admin.user.update');
+        Route::post('destroy/{id}', 'Admin\UserController@destroy')->name('admin.user.destroy');
     });
 
     // Route::group(['prefix' => 'news'], function() {
@@ -99,3 +100,5 @@ Route::group(['prefix' => 'admin'], function() {
         Route::post('complete', 'Admin\ContactController@complete')->name('admin.contact.complete');
     });
 });
+
+

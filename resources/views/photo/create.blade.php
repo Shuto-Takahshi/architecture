@@ -10,43 +10,30 @@
                 <div class="create">
                     <h2>新規投稿</h2>
                 </div>
-                <div class="">
-                    <form>
-                        <div class="form-row">
-                            <div class="col">
-                                <label for="myImage" class="d-flex mb-0">
-                                    写真を選択する
-                                </label>
-                                <input type="file" id="myImage" class="form-control" accept="image/*" style="display: none">
-                                <img id="preview">
-                                <button class="rounded-circle" id="btn" type="button"><i class="far fa-trash-alt"></i></button>
-                            </div>
+                <form method="POST" action="{{ route('photo.store') }}">
+                        <div class="form-group">
+                            <label for="file-sample" class="mb-0"></label>
+                            <input type="file" id="file-sample" class="form-control-file" onclick="">
+                            <img class="photo-img" id="file-preview" style="width: 100%">
                         </div>
-                        <div class="form-row">
-                            <div class="col">
-                                <input class="form-control" id="create-title" type="text" placeholder="スポット" aria-label="text">
-                            </div>
+                        <div class="form-group">
+                            <label></label>
+                            <input class="form-control" type="text" placeholder="スポット" aria-label="text">
                         </div>
-                        <div class="form-row">
-                            <div class="col">
-                                <input class="form-control" id="create-address" type="text" placeholder="住所" aria-label="address">
-                            </div>
+                        <div class="form-group">
+                            <label></label>
+                            <input class="form-control" type="text" placeholder="住所" aria-label="address">
                         </div>
-                        <div class="form-row">
-                            <div class="col">
-                                <textarea class="form-control" id="create-content" name="create-textarea" rows="3" placeholder="スポットについて"></textarea>
-                            </div>
+                        <div class="form-group">
+                            <label></label>
+                            <textarea class="form-control" name="create-textarea" rows="3" placeholder="スポットについて"></textarea>
                         </div>
-                        <div class="form-row">
-                            <div class="col">
-                                <input class="form-control" id="create-title" type="text" placeholder="タグ" aria-label="text">
-                            </div>
+                        <div class="form-group">
+                            <label></label>
+                            <input class="form-control" type="text" placeholder="タグ" aria-label="text">
                         </div>
-                        <div class="form-row">
-                            <div class="col text-left">
-                                <a class="btn btn-primary shadow-none ml-0" href="">投稿する</a>
-                                <a class="btn border shadow-none" href="">キャンセル</a>
-                            </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">投稿する</button>
                         </div>
                     </form>
                 </div>
@@ -56,27 +43,23 @@
 </div>
 
 <script>
-    $('#myImage').on('click', function (e) {
-        $('#myImage').val('');
-    });
-    $('#myImage').on('change', function (e) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $("#preview").attr('src', e.target.result);
-            $("#preview").attr('style', "width:100%");
+    document.getElementById('file-sample').addEventListener('change', function (e) {
+        // 1枚だけ表示する
+        var file = e.target.files[0];
+        // ファイルリーダー作成
+        var fileReader = new FileReader();
+        fileReader.onload = function() {
+            // Data URIを取得
+            var dataUri = this.result;
+
+            // img要素に表示
+            var img = document.getElementById('file-preview');
+            img.src = dataUri;
         }
-        reader.readAsDataURL(e.target.files[0]);
+        // ファイルをData URIとして読み込む
+        fileReader.readAsDataURL(file);
     });
 </script>
-<script>
-    const btn = document.getElementById('btn');
-    btn.addEventListener('click', () => {
-        $("#preview").removeAttr('src');
-    });
-</script>
-{{-- <script>
-$('.file-upload').file_upload();
-</script> --}}
 
 
 @endsection

@@ -10959,7 +10959,6 @@ a.text-dark:focus {
 
 .navbar .auth-btn a {
   font-size: 14px;
-  padding: 4px 8px;
 }
 
 @media (max-width: 767px) {
@@ -10983,10 +10982,6 @@ a.text-dark:focus {
 .navbar .dropdown-menu a {
   font-size: 14px;
   color: black;
-}
-
-.navbar .dropdown-menu .btn {
-  padding: 6px 12px;
 }
 
 .photo-index {
@@ -11155,10 +11150,6 @@ a.text-dark:focus {
   max-width: 800px;
 }
 
-.photo-create .form-row {
-  padding-bottom: 16px;
-}
-
 .profile-show .profile-info {
   padding-top: 24px;
   max-width: 960px;
@@ -11245,11 +11236,6 @@ a.text-dark:focus {
   width: 96px;
   height: 96px;
   border-radius: 50%;
-}
-
-.profile-edit .profile-area {
-  padding: 0px 32px;
-  margin: 16px 0px;
 }
 
 .profile-edit .text-area {

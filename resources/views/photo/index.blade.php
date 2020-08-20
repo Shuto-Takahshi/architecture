@@ -135,22 +135,6 @@
                     </div>
                 </div>
             </div>
-            <div class="grid-item">
-                <div class="img">
-                    <a href="">
-                        <img class="photo-img" src="{{ asset('/images/telmo-filho-pcu7Ll0pdjM-unsplash.jpg') }}" alt="image">
-                    </a>
-                    <div class="photo-top">
-                        <a href="" class="d-flex align-items-center">
-                            <p class="mb-0 photo-title">投稿のタイトル</p>
-                        </a>
-                    </div>
-                    <div class="photo-bottom">
-                        <a href="" class="d-flex align-items-center">
-                        </a>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
