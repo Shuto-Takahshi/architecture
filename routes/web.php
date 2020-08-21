@@ -11,9 +11,9 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 
@@ -24,7 +24,7 @@ Route::group(['prefix' => 'photo'], function() {
     Route::post('store', 'PhotoController@store')->name('photo.store');
 
     // Route::get('show/{id}', 'PhotoController@show')->name('photo.show');
-    Route::get('show/{user_id}', 'PhotoController@show')->name('photo.show');
+    Route::get('show', 'PhotoController@show')->name('photo.show');
 
     Route::get('edit/{id}', 'PhotoController@edit')->name('photo.edit');
     Route::post('update/{id}', 'PhotoController@update')->name('photo.update');
@@ -36,10 +36,11 @@ Route::group(['prefix' => 'photo'], function() {
 
 Route::group(['prefix' => 'user'], function() {
     Route::get('show', 'UserController@show')->name('user.show');
+    // Route::get('show/{user_id}', 'UserController@show')->name('user.show');
 
     // Route::get('edit/{id}', 'ProfileController@edit')->name('profile.edit');
-    Route::get('edit/', 'UserController@edit')->name('user.edit');
-    Route::post('update/{id}', 'UserController@update')->name('user.update');
+    Route::get('edit', 'UserController@edit')->name('user.edit');
+    Route::post('update', 'UserController@update')->name('user.update');
 });
 
 // Route::group(['prefix' => 'news'], function() {

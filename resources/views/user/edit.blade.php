@@ -7,26 +7,27 @@
     <div class="container bg-white p-5">
         <div class="row mx-auto">
             <div class="col">
-                <form method="POST" action="">
-                    <div class="form-group profile-item">
+            {{-- <form method="POST" action=""> --}}
+            <form method="POST" action="{{ route('user.update')}}" enctype="multipart/form-data">
+                @csrf
+                    <div class="form-group">
                         <label for="file-sample" class="mb-0">
-                            <img class="user-img" id="file-preview" src="{{ asset('/images/blank_profile.png') }}" alt="image">
+                            <img class="user-img" id="file-preview" src="{{ $user->image_path ? asset('storage/user_images/' . $user->image_path) : asset('/images/blank_profile.png')}}" alt="image">
                         </label>
                         <label for="file-sample" class="mb-0">
                             <a class="btn border shadow-none p-1">写真を選択</a>
                         </label>
-                        <input type="file" id="file-sample" class="form-control" style="display: none">
-                        {{-- <img id="file-preview"> --}}
+                        <input type="file" id="file-sample" name="user_image" class="form-control" style="display: none">
                     </div>
-                    <div class="form-group profile-item">
-                        <label for="profile-username">ユーザーネーム</label>
-                        <input type="text" id="profile-username" class="form-control">
+                    <div class="form-group">
+                        <label for="name">ユーザーネーム</label>
+                        <input type="text" id="name" name="user_name" value="{{ old('user_name', $user->name) }}" class="form-control">
                     </div>
-                    <div class="form-group profile-item">
-                        <label for="profile-introduction">自己紹介</label>
-                        <textarea id="profile-introduction" class="form-control"></textarea>
+                    <div class="form-group">
+                        <label for="introduction">自己紹介</label>
+                        <textarea id="introduction" name="body" class="form-control">{{ old('body', $user->body) }}</textarea>
                     </div>
-                    <div class="form-group mb-0  profile-item">
+                    <div class="form-group mb-0">
                         <button class="btn btn-primary" type="submit">プロフィールを更新</button>
                     </div>
                 </form>

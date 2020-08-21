@@ -11155,14 +11155,11 @@ a.text-dark:focus {
   max-width: 960px;
 }
 
-.profile-show .profile-icon {
-  font-size: 96px;
-}
-
 .profile-show .user-img {
   width: 96px;
   height: 96px;
   border-radius: 50%;
+  margin-bottom: 8px;
 }
 
 .profile-show .profile-name {
@@ -11178,16 +11175,6 @@ a.text-dark:focus {
   position: absolute;
   top: 0px;
   right: 0px;
-}
-
-.profile-show .follow-btn {
-  padding: 8px 16px;
-  font-size: 12px;
-  margin: 0px;
-}
-
-.profile-show .set-btn {
-  padding: 8px 16px;
 }
 
 .profile-show .tab-list {
@@ -11240,14 +11227,6 @@ a.text-dark:focus {
 
 .profile-edit .text-area {
   margin: 16px 0px;
-}
-
-.profile-edit .nav-item {
-  padding: 16px;
-}
-
-.profile-edit .profile-item {
-  margin-bottom: 24px;
 }
 
 .news-index .container {

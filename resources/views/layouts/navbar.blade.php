@@ -8,6 +8,7 @@
 
     {{-- form --}}
     <form class="form-inline bg-white" id="search-input">
+        @csrf
         <div class="border d-flex">
             <button class="btn" type="button" onclick="clickBtn()"><i class="fas fa-times"></i></button>
             <input class="form-control shadow-none my-auto mr-4" type="search" placeholder="Search" aria-label="Search">
@@ -42,10 +43,16 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li class="p-2">
-                    <a class="" href="{{ route('user.show') }}">プロフィール</a>
+                        <a class="" href="{{ route('user.show') }}">プロフィール</a>
                     </li>
                     <li class="p-2">
-                    <a class="" href="{{ route('logout') }}">ログアウト</a>
+                        <a class="btn btn-outline-info" href="{{ route('photo.create') }}">新規投稿</a>
+                    </li>
+                    <li class="p-2">
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
+                        <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </div>

@@ -10,16 +10,19 @@
                 <div class="col p-0">
                     <div class="mb-3 d-md-flex">
                         <div class="pr-md-3">
-                            {{-- if文 --}}
-                            <img class="user-img" src="{{ asset('/images/blank_profile.png') }}" alt="image">
+                            @if ($user->image_path)
+                                <img class="user-img" src="{{ asset('storage/user_images/' . $user->image_path) }}"/>
+                            @else
+                                <img class="user-img" src="{{ asset('/images/blank_profile.png') }}" alt="image">
+                            @endif
                         </div>
                         <div class="pl-md-3">
-                            <div class="font-weight-bold profile-name">ユーザー名ユーザー名ユーザー名</div>
+                            <div class="font-weight-bold profile-name">{{ $user->name }}</div>
                             <div class="profile-btn">
-                                <a class="btn btn-primary shadow-none follow-btn" href=""><i class="fas fa-user-plus mr-2"></i>フォロー</a>
-                                {{-- <a class="btn shadow-none border my-auto ml-auto profile-set-btn" href=""><i class="fas fa-cog mr-2"></i>設定</a> --}}
+                                {{-- <a class="btn btn-primary shadow-none" href=""><i class="fas fa-user-plus mr-1"></i>フォロー</a> --}}
+                            <a class="btn shadow-none border my-auto ml-auto" href="{{ route('user.edit') }}"><i class="fas fa-cog mr-1"></i>設定</a>
                             </div>
-                            <p class=" mb-2">自己紹介。自己紹介。自己紹介。自己紹介。自己紹介。自己紹介。自己紹介。自己紹介。自己紹介。自己紹介。自己紹介。</p>
+                        <p class=" mb-2">{{ $user->body }}</p>
                             <div>
                                 <a href="" class=""><span class="font-weight-bold">100 </span>フォロワー</a>
                                 <a href="" class=""><span class="font-weight-bold">100 </span>フォロー</a>

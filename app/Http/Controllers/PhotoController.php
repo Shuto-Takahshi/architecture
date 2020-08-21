@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use App\Photo;
+use App\Photo;
 
 class PhotoController extends Controller
 {
@@ -15,6 +15,7 @@ class PhotoController extends Controller
     public function index()
     {
         //
+        $photos = Photo::all()->sortByDesc('created_at');
         return view('photo.index');
     }
 
