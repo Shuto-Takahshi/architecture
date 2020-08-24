@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Photo;
+use App\Http\Requests\PhotoRequest;
 
 class PhotoController extends Controller
 {
@@ -14,9 +15,8 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
         $photos = Photo::all()->sortByDesc('created_at');
-        return view('photo.index');
+        return view('photo.index', ['photos' => $photos]);
     }
 
     /**
@@ -26,7 +26,6 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        //
         return view('photo.create');
     }
 
@@ -36,9 +35,15 @@ class PhotoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PhotoRequest $request, Photo $photo)
     {
         //
+        $photo->fill($request->all());
+        $path = $request->photo_image->store('public/photo_images');
+        $photo->image_path = basename($path);
+        $photo->user_id = $request->user()->id;
+        $photo->save();
+
         return redirect('photo/index');
     }
 
@@ -51,10 +56,11 @@ class PhotoController extends Controller
 
 
     //public function show($id)
-    public function show()
+    public function show(Photo $photo)
     {
         //
-        return view('photo.show');
+
+        return view('photo.show', ['photo' => $photo]);
     }
 
     /**
@@ -63,10 +69,10 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Photo $photo)
     {
         //
-        return view('photo.edit');
+        return view('photo.edit', [photo => $photo]);
     }
 
     /**

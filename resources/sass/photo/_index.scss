@@ -51,14 +51,11 @@
     .grid-item {
         float: left;
         padding: 8px;
-    }
-
-    .grid-item img {
-        display: block;
-        max-width: 100%;
-    }
-    .img {
-        position: relative;
+        .img {
+            display: block;
+            max-width: 100%;
+            position: relative;
+        }
     }
     .photo-top {
         position: absolute;
@@ -66,6 +63,9 @@
         left: 0px;
         width: max-content;
         visibility: hidden;
+        p {
+            font-size: 14px;
+        }
     }
     .photo-bottom {
         position: absolute;
@@ -73,17 +73,14 @@
         left: 0px;
         width: max-content;
         visibility: hidden;
+        p {
+            font-size: 14px;
+        }
     }
     .user-img {
         width: 28px;
         height: 28px;
         border-radius: 50%;
-    }
-    .user-name {
-        font-size: 14px;
-    }
-    .photo-title {
-        font-size: 14px;
     }
     .photo-img {
         width: 100%;

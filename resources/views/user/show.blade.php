@@ -6,14 +6,14 @@
 <div class="profile-show">
     <div class="bg-white">
         <div class="container">
-            <div class="row mx-auto profile-info">
+            <div class="row mx-auto">
                 <div class="col p-0">
                     <div class="mb-3 d-md-flex">
                         <div class="pr-md-3">
                             @if ($user->image_path)
                                 <img class="user-img" src="{{ asset('storage/user_images/' . $user->image_path) }}"/>
                             @else
-                                <img class="user-img" src="{{ asset('/images/blank_profile.png') }}" alt="image">
+                                <img class="user-img" src="{{ asset('/images/default_user_image.png') }}" alt="image">
                             @endif
                         </div>
                         <div class="pl-md-3">
@@ -56,13 +56,19 @@
     </div>
     <div class="tab-content">
         <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
-            <div class="container">
-                <div class="row">
-                    <div class="col-4 p-4">
-                        <a href="">
-                            <img class="profile-photo" src="{{ asset('/images/viktor-jakovlev-H0vuplqoX0c-unsplash.jpg') }}" alt="image">
-                        </a>
-                    </div>
+            <div class="container-fluid">
+                <div class="grid">
+                    <div class="grid-sizer"></div>
+                    @foreach ($user->photos as $photo)
+                        <div class="grid-item">
+                            <div class="img">
+                                <a href="">
+                            {{-- <a href="{{ route('photo.show ')}}"> --}}
+                                    <img class="" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image" style="width: 100%">
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

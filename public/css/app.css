@@ -11040,12 +11040,9 @@ a.text-dark:focus {
   padding: 8px;
 }
 
-.photo-index .grid-item img {
+.photo-index .grid-item .img {
   display: block;
   max-width: 100%;
-}
-
-.photo-index .img {
   position: relative;
 }
 
@@ -11059,6 +11056,10 @@ a.text-dark:focus {
   visibility: hidden;
 }
 
+.photo-index .photo-top p {
+  font-size: 14px;
+}
+
 .photo-index .photo-bottom {
   position: absolute;
   bottom: 0px;
@@ -11069,18 +11070,14 @@ a.text-dark:focus {
   visibility: hidden;
 }
 
+.photo-index .photo-bottom p {
+  font-size: 14px;
+}
+
 .photo-index .user-img {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-}
-
-.photo-index .user-name {
-  font-size: 14px;
-}
-
-.photo-index .photo-title {
-  font-size: 14px;
 }
 
 .photo-index .photo-img {
@@ -11150,7 +11147,7 @@ a.text-dark:focus {
   max-width: 800px;
 }
 
-.profile-show .profile-info {
+.profile-show .container {
   padding-top: 24px;
   max-width: 960px;
 }
@@ -11207,8 +11204,43 @@ a.text-dark:focus {
   visibility: visible;
 }
 
-.profile-show .profile-photo {
-  width: 100%;
+.profile-show * {
+  box-sizing: border-box;
+}
+
+.profile-show .grid:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.profile-show .grid-sizer,
+.profile-show .grid-item {
+  width: 25%;
+}
+
+@media (max-width: 575px) {
+  .profile-show .grid-sizer,
+  .profile-show .grid-item {
+    width: 50%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .profile-show .grid-sizer,
+  .profile-show .grid-item {
+    width: 33.333%;
+  }
+}
+
+.profile-show .grid-item {
+  float: left;
+  padding: 8px;
+}
+
+.profile-show .grid-item .img {
+  display: block;
+  max-width: 100%;
 }
 
 .profile-edit .container {

@@ -39,7 +39,12 @@
         <li class="nav-item mr-2">
             <div class="dropdown">
                 <button class="btn shadow-none p-0 m-0 dropdown-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="user-img" src="{{ asset('/images/blank_profile.png') }}" alt="image">
+                    {{-- <img class="user-img" src="{{ asset('/images/default_user_image.png') }}" alt="image"> --}}
+                    @if (Auth::check() && isset(Auth::user()->image_path))
+                        <img class="user-img" src="{{ asset('storage/user_images/' . Auth::user()->image_path) }}"/>
+                    @else
+                        <img class="user-img" src="{{ asset('/images/default_user_image.png') }}" alt="image">
+                    @endif
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li class="p-2">
