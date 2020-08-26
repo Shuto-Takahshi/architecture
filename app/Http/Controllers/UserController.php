@@ -8,42 +8,44 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    //
     // public function __construct()
     // {
     //     $this->middleware('auth');
     // }
 
-    // public function show($id)
     public function show(Request $request)
     {
-        //
-        $user = Auth::user();
-        return view('user.show', ['user' => $user]);
+        $user = User::where('id', $request->user_id)->first();
+        $myphotos = $user->photos->sortByDesc('created_at');
+        return view('user.show', ['user' => $user, 'myphotos' => $myphotos]);
     }
 
-    // public function edit($id)
+    public function mypage(Request $request)
+    {
+        $user = Auth::user();
+        $myphotos = $user->photos->sortByDesc('created_at');
+        return view('user.mypage', ['user' => $user, 'myphotos' => $myphotos]);
+    }
+
     public function edit()
     {
         $user = Auth::user();
         return view('user.edit', ['user' => $user]);
     }
 
-    // public function update(Request $request, $id)
     public function update(Request $request)
     {
-        //
+        $this->validate($request, User::$rules);
+
         $user = Auth::user();
         if ($request->user_image !=null) {
-            $path = $request->user_image->storeAs('public/user_images', $user->id);
+            $path = $request->user_image->store('public/user_images');
             $user->image_path = basename($path);
         }
         $user->name = $request->user_name;
         $user->body = $request->body;
         $user->save();
 
-        // return redirect('user/show/{id}');
-        return redirect('user/show');
+        return redirect()->route('user.mypage');
     }
-
 }

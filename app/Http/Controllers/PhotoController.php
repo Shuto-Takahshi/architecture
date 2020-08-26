@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Photo;
-use App\Http\Requests\PhotoRequest;
+use App\Http\Requests\PhotoStoreRequest;
+use App\Http\Requests\PhotoUpdateRequest;
 
 class PhotoController extends Controller
 {
@@ -35,16 +36,16 @@ class PhotoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PhotoRequest $request, Photo $photo)
+    public function store(PhotoStoreRequest $request, Photo $photo)
     {
         //
         $photo->fill($request->all());
-        $path = $request->photo_image->store('public/photo_images');
+        $path = $request->photo_image->store('public/photo_images/');
         $photo->image_path = basename($path);
         $photo->user_id = $request->user()->id;
         $photo->save();
 
-        return redirect('photo/index');
+        return redirect()->route('photo.index');
     }
 
     /**
@@ -55,11 +56,8 @@ class PhotoController extends Controller
      */
 
 
-    //public function show($id)
     public function show(Photo $photo)
     {
-        //
-
         return view('photo.show', ['photo' => $photo]);
     }
 
@@ -71,8 +69,7 @@ class PhotoController extends Controller
      */
     public function edit(Photo $photo)
     {
-        //
-        return view('photo.edit', [photo => $photo]);
+        return view('photo.edit', ['photo' => $photo]);
     }
 
     /**
@@ -82,10 +79,12 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PhotoUpdateRequest $request, Photo $photo)
     {
-        //
-        return redirect('photo/show/{id}');
+        $photo->fill($request->all());
+        $photo->save();
+
+        return redirect()->route('photo.index');
     }
 
     /**
@@ -94,9 +93,9 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Photo $photo)
     {
-        //
-        return redirect('profile/show/{id}');
+        $photo->delete();
+        return redirect()->route('photo.index');
     }
 }

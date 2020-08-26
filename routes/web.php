@@ -20,26 +20,22 @@ Auth::routes();
 // 一般ユーザー
 Route::group(['prefix' => 'photo'], function() {
     Route::get('index', 'PhotoController@index')->name('photo.index');
-    Route::get('create', 'PhotoController@create')->name('photo.create');
-    Route::post('store', 'PhotoController@store')->name('photo.store');
-
+    Route::get('create', 'PhotoController@create')->name('photo.create')->middleware('auth');
+    Route::post('store', 'PhotoController@store')->name('photo.store')->middleware('auth');
     Route::get('show/{photo}', 'PhotoController@show')->name('photo.show');
+    Route::get('edit/{photo}', 'PhotoController@edit')->name('photo.edit')->middleware('auth');
+    Route::post('update/{photo}', 'PhotoController@update')->name('photo.update')->middleware('auth');
+    Route::post('destroy/{photo}', 'PhotoController@destroy')->name('photo.destroy')->middleware('auth');
 
-    Route::get('edit/{id}', 'PhotoController@edit')->name('photo.edit');
-    Route::post('update/{id}', 'PhotoController@update')->name('photo.update');
-    Route::post('destroy/{id}', 'PhotoController@destroy')->name('photo.destroy');
-
-    Route::put('like/{id}', 'PhotoController@like')->name('photo.like');
-    Route::delete('like/{id}', 'PhotoController@unlike')->name('photo.unlike');
+    Route::put('like/{id}', 'PhotoController@like')->name('photo.like')->middleware('auth');
+    Route::delete('like/{id}', 'PhotoController@unlike')->name('photo.unlike')->middleware('auth');
 });
 
 Route::group(['prefix' => 'user'], function() {
-    // Route::get('show', 'UserController@show')->name('user.show');
-    Route::get('show', 'UserController@show')->name('user.show');
-
-    // Route::get('edit/{id}', 'ProfileController@edit')->name('profile.edit');
-    Route::get('edit', 'UserController@edit')->name('user.edit');
-    Route::post('update', 'UserController@update')->name('user.update');
+    Route::get('show/{user_id}', 'UserController@show')->name('user.show');
+    Route::get('mypage', 'UserController@mypage')->name('user.mypage')->middleware('auth');
+    Route::get('edit', 'UserController@edit')->name('user.edit')->middleware('auth');
+    Route::post('update', 'UserController@update')->name('user.update')->middleware('auth');
 });
 
 // Route::group(['prefix' => 'news'], function() {

@@ -7,8 +7,9 @@
     <div class="container bg-white p-5">
         <div class="row mx-auto">
             <div class="col">
-            <form method="POST" action="{{ route('user.update')}}" enctype="multipart/form-data">
-                @csrf
+                @include('error_list')
+                <form method="POST" action="{{ route('user.update')}}" enctype="multipart/form-data">
+                    @csrf
                     <div class="form-group">
                         <label for="file-sample" class="mb-0">
                             <img class="user-img" id="file-preview" src="{{ $user->image_path ? asset('storage/user_images/' . $user->image_path) : asset('/images/default_user_image.png')}}" alt="image">

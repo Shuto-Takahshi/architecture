@@ -10,22 +10,27 @@
             @foreach($photos as $photo)
                 <div class="grid-item">
                     <div class="img">
-                    <a href="{{ route('photo.show', ['photo' => $photo]) }}">
+                        <a href="{{ route('photo.show', ['photo' => $photo]) }}">
                             <img class="photo-img" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image">
                         </a>
-                        <div class="photo-top">
-                            <a href="" class="d-flex">
+                        <div class="photo-top p-2">
+                            <a href="{{ route('photo.show', ['photo' => $photo]) }}" class="d-flex text-white">
                                 <p class="mb-0 photo-title">{{ $photo->title }}</p>
                             </a>
 
                         </div>
                         <div class="photo-bottom" class="d-flex">
-                            <a href="{{ route('user.show') }}" class="">
-                                <img class="user-img mr-1" src="{{ $photo->user->image_path ? asset('storage/user_images/' . $photo->user->image_path) : asset('/images/default_user_image.png')}}" alt="image">
-                            </a>
-                            <a href="{{ route('user.show') }}" class="">{{ $photo->user->name }}</a>
-                            {{-- <a href="{{ route('user.show', ['user' => $photo->user->id]) }}" class="">{{ $photo->user->name }}</a> --}}
-
+                            @if(Auth::id() === $photo->user_id)
+                                <a href="{{ route('user.mypage') }}" class="">
+                                    <img class="user-img mr-1" src="{{ $photo->user->image_path ? asset('storage/user_images/' . $photo->user->image_path) : asset('/images/default_user_image.png')}}" alt="image">
+                                </a>
+                                <a href="{{ route('user.mypage') }}" class="text-white">{{ $photo->user->name }}</a>
+                            @else
+                                <a href="{{ route('user.show', ['user_id' => $photo->user_id]) }}" class="">
+                                    <img class="user-img mr-1" src="{{ $photo->user->image_path ? asset('storage/user_images/' . $photo->user->image_path) : asset('/images/default_user_image.png')}}" alt="image">
+                                </a>
+                                <a href="{{ route('user.show', ['user_id' => $photo->user_id]) }}" class="text-white">{{ $photo->user->name }}</a>
+                            @endif
                         </div>
                     </div>
                 </div>

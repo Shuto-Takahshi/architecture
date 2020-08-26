@@ -8,36 +8,36 @@
         <div class="bg-white shadow-sm">
             <div class="p-5">
                 <div class="create">
-                    <h2>新規投稿</h2>
+                    <h2>投稿編集</h2>
                 </div>
 
                 @include('error_list')
 
-                <form method="POST" action="{{ route('photo.store') }}" enctype="multipart/form-data">
+               <form method="POST" action="{{ route('photo.update', ['photo' => $photo->id]) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="file-sample" class="mb-0"></label>
-                        <input type="file" id="file-sample" name="photo_image" class="form-control-file">
-                        <img class="photo-img" id="file-preview" style="width: 100%; display: none;">
+                        {{-- <label for="file-sample" class="mb-0"></label>
+                        <input type="file" id="file-sample" name="photo_image" class="form-control-file"> --}}
+                        <img class="photo-img" id="file-preview" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" style="width: 100%">
                     </div>
                     <div class="form-group">
                         <label></label>
-                        <input class="form-control" type="text" name="title" placeholder="スポット" aria-label="text">
+                        <input class="form-control" type="text" name="title" value="{{ old('title', $photo->title) }}" aria-label="text">
                     </div>
                     <div class="form-group">
                         <label></label>
-                        <textarea class="form-control" name="body" rows="3" placeholder="スポットについて"></textarea>
+                    <textarea class="form-control" name="body" rows="3">{{ old('body', $photo->body) }}</textarea>
                     </div>
                     <div class="form-group">
                         <label></label>
-                        <input class="form-control" type="text" name="address" placeholder="住所" aria-label="address">
+                    <input class="form-control" type="text" name="address" value="{{ old('address', $photo->address) }}" aria-label="address">
                     </div>
                     {{-- <div class="form-group">
                         <label></label>
                         <input class="form-control" type="text" placeholder="タグ" aria-label="text">
                     </div> --}}
                     <div class="form-group">
-                        <button class="btn btn-primary" type="submit">投稿する</button>
+                        <button class="btn btn-primary" type="submit">更新する</button>
                     </div>
                 </form>
             </div>

@@ -7,7 +7,7 @@
     </div>
 
     {{-- form --}}
-    <form class="form-inline bg-white" id="search-input">
+    <form class="form-inline bg-white" id="search-input" method="GET">
         @csrf
         <div class="border d-flex">
             <button class="btn" type="button" onclick="clickBtn()"><i class="fas fa-times"></i></button>
@@ -48,7 +48,7 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li class="p-2">
-                        <a class="" href="{{ route('user.show') }}">プロフィール</a>
+                        <a class="" href="{{ route('user.mypage') }}">プロフィール</a>
                     </li>
                     <li class="p-2">
                         <a class="btn btn-outline-info" href="{{ route('photo.create') }}">新規投稿</a>
@@ -74,7 +74,7 @@
                         <a class="" href="#">サイトについて</a>
                     </li>
                     <li class="p-2">
-                        <a class="" href="#">お問い合わせ</a>
+                    <a class="" href="{{ route('contact.index') }}">お問い合わせ</a>
                     </li>
                     <li class="p-2">
                         <a class="" href="#">利用規約</a>
@@ -82,11 +82,6 @@
                     <li class="p-2">
                         <a class="" href="#" style="text-decoration: none">プライバシーポリシー</a>
                     </li>
-                    {{-- <li class="p-2 menu-btn">
-                        <a class="btn border shadow-none menu-login-btn" href="#">ログイン</a>
-                        <a class="btn btn-primary text-white menu-register-btn" style="float: right" href="#">新規登録</a>
-                    </li> --}}
-                    {{-- <div class="dropdown-divider my-0"></div> --}}
                 </ul>
             </div>
         </li>
