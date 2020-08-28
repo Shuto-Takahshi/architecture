@@ -41,6 +41,7 @@ class PhotoController extends Controller
         //
         $photo->fill($request->all());
         $path = $request->photo_image->store('public/photo_images/');
+        // $path = $request->photo_image->store('public/photo_images/'.$request->user()->id);
         $photo->image_path = basename($path);
         $photo->user_id = $request->user()->id;
         $photo->save();

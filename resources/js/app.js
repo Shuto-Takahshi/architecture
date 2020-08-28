@@ -27,6 +27,13 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// import './bootstrap'
+import Vue from 'vue'
+import PhotoLike from './components/PhotoLike'
+
 const app = new Vue({
     el: '#app',
+    components: {
+        PhotoLike,
+    }
 });

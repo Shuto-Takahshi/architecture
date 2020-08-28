@@ -3,7 +3,7 @@
 
 <nav class="navbar navbar-expand navbar-light border-bottom py-1 bg-white fixed-top px-md-4">
     <div class="navbar-brand home">
-        <a class="" href="{{ route('photo.index') }}">ArchiGallery</a>
+        <a class="text-dark" href="{{ route('photo.index') }}">ArchiGallery</a>
     </div>
 
     {{-- form --}}
@@ -15,7 +15,7 @@
         </div>
     </form>
 
-    {{-- <form class="form-inline" style="width: 100%">
+    {{-- <form class="form-row" style="width: 100%">
         <input class="form-control shadow-none my-auto" type="search" placeholder="Search" aria-label="Search" style="width: inherit">
     </form> --}}
 
@@ -28,7 +28,7 @@
 
         {{-- 新規登録/ログイン --}}
         @guest
-        <li class="nav-item mr-2 my-auto auth-btn">
+        <li class="nav-item mr-2 my-auto nav-btn">
             <a class="btn p-0" href="{{ route('login') }}">ログイン</a>
             <a class="btn btn-primary text-white m-0" href="{{ route('register')}}">新規登録</a>
         </li>
@@ -38,29 +38,43 @@
         @auth
         <li class="nav-item mr-2">
             <div class="dropdown">
-                <button class="btn shadow-none p-0 m-0 dropdown-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{-- <img class="user-img" src="{{ asset('/images/default_user_image.png') }}" alt="image"> --}}
+                <button class="btn shadow-none p-0 mr-2 dropdown-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     @if (Auth::check() && isset(Auth::user()->image_path))
-                        <img class="user-img" src="{{ asset('storage/user_images/' . Auth::user()->image_path) }}"/>
+                    <img class="user-img border" src="{{ asset('storage/user_images/' . Auth::user()->image_path) }}"/>
                     @else
-                        <img class="user-img" src="{{ asset('/images/default_user_image.png') }}" alt="image">
+                    <img class="user-img border" src="{{ asset('/images/default_user_image.png') }}" alt="image">
                     @endif
                 </button>
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li class="p-2">
-                        <a class="" href="{{ route('user.mypage') }}">プロフィール</a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item py-2" href="{{ route('user.mypage') }}"><i class="fas fa-user mr-1"></i>プロフィール</a>
+                    <a class="dropdown-item py-2" href="{{ route('user.edit') }}"><i class="fas fa-cog mr-1"></i>設定</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item py-2" href="#"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt mr-1"></i>ログアウト</a>
+                    <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none">
+                        @csrf
+                    </form>
+                </div>
+                {{-- <ul class="dropdown-menu dropdown-menu-right">
+                    <li class="dropdown-item">
+                        <a class="" href="{{ route('user.mypage') }}"><i class="fas fa-user mr-1"></i>プロフィール</a>
                     </li>
-                    <li class="p-2">
-                        <a class="btn btn-outline-info" href="{{ route('photo.create') }}">新規投稿</a>
+                    <li class="dropdown-item">
+                        <a class="" href="{{ route('user.edit') }}"><i class="fas fa-cog mr-1"></i>設定</a>
                     </li>
-                    <li class="p-2">
+                    <li class="text-center">
+                    </li>
+                    <div class="dropdown-divider"></div>
+                    <li class="dropdown-item">
                         <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
                         <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none">
                             @csrf
                         </form>
                     </li>
-                </ul>
+                </ul> --}}
             </div>
+        </li>
+        <li class="nav-item mr-2 my-auto nav-btn">
+            <a class="btn btn-primary" href="{{ route('photo.create') }}"><i class="fas fa-plus mr-1"></i>投稿</a>
         </li>
         @endauth
 
@@ -80,7 +94,7 @@
                         <a class="" href="#">利用規約</a>
                     </li>
                     <li class="p-2">
-                        <a class="" href="#" style="text-decoration: none">プライバシーポリシー</a>
+                        <a class="" href="#">プライバシーポリシー</a>
                     </li>
                 </ul>
             </div>

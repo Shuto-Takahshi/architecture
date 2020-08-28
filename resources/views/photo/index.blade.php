@@ -13,25 +13,8 @@
                         <a href="{{ route('photo.show', ['photo' => $photo]) }}">
                             <img class="photo-img" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image">
                         </a>
-                        <div class="photo-top p-2">
-                            <a href="{{ route('photo.show', ['photo' => $photo]) }}" class="d-flex text-white">
-                                <p class="mb-0 photo-title">{{ $photo->title }}</p>
-                            </a>
-
-                        </div>
-                        <div class="photo-bottom" class="d-flex">
-                            @if(Auth::id() === $photo->user_id)
-                                <a href="{{ route('user.mypage') }}" class="">
-                                    <img class="user-img mr-1" src="{{ $photo->user->image_path ? asset('storage/user_images/' . $photo->user->image_path) : asset('/images/default_user_image.png')}}" alt="image">
-                                </a>
-                                <a href="{{ route('user.mypage') }}" class="text-white">{{ $photo->user->name }}</a>
-                            @else
-                                <a href="{{ route('user.show', ['user_id' => $photo->user_id]) }}" class="">
-                                    <img class="user-img mr-1" src="{{ $photo->user->image_path ? asset('storage/user_images/' . $photo->user->image_path) : asset('/images/default_user_image.png')}}" alt="image">
-                                </a>
-                                <a href="{{ route('user.show', ['user_id' => $photo->user_id]) }}" class="text-white">{{ $photo->user->name }}</a>
-                            @endif
-                        </div>
+                        @include('photo.header')
+                        @include('photo.footer')
                     </div>
                 </div>
             @endforeach

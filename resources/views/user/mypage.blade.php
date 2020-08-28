@@ -10,13 +10,13 @@
                 <div class="col p-0">
                     <div class="mb-3 d-md-flex">
                         <div class="pr-md-3">
-                            <img class="user-img" src="{{ $user->image_path ? asset('storage/user_images/' . $user->image_path) : asset('/images/default_user_image.png')}}" alt="image">
+                            <img class="my-img border" src="{{ $user->image_path ? asset('storage/user_images/' . $user->image_path) : asset('/images/default_user_image.png')}}" alt="image">
                         </div>
                         <div class="pl-md-3">
                             <div class="font-weight-bold profile-name">{{ $user->name }}</div>
                             <div class="profile-btn">
                                 {{-- <a class="btn btn-primary shadow-none" href=""><i class="fas fa-user-plus mr-1"></i>フォロー</a> --}}
-                            <a class="btn shadow-none border my-auto ml-auto" href="{{ route('user.edit') }}"><i class="fas fa-cog mr-1"></i>設定</a>
+                                <a class="btn border my-auto ml-auto" href="{{ route('user.edit') }}"><i class="fas fa-cog mr-1"></i>設定</a>
                             </div>
                         <p class=" mb-2">{{ $user->body }}</p>
                             <div>
@@ -55,13 +55,14 @@
             <div class="container-fluid">
                 <div class="grid">
                     <div class="grid-sizer"></div>
-                    @foreach ($myphotos as $photo)
+                    @foreach ($photos as $photo)
                         <div class="grid-item">
                             <div class="img">
-                                <a href="">
-                            {{-- <a href="{{ route('photo.show ')}}"> --}}
-                                    <img class="" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image" style="width: 100%">
+                                <a href="{{ route('photo.show', ['photo' => $photo]) }}">
+                                    <img class="photo-img" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image">
                                 </a>
+                                @include('photo.header')
+                                @include('photo.footer')
                             </div>
                         </div>
                     @endforeach
@@ -72,9 +73,4 @@
         </div>
     </div>
 </div>
-
-
-
 @endsection
-
-@include('layouts.footer')

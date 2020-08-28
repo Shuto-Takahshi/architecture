@@ -16,26 +16,24 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 // 一般ユーザー
-Route::group(['prefix' => 'photo'], function() {
-    Route::get('index', 'PhotoController@index')->name('photo.index');
-    Route::get('create', 'PhotoController@create')->name('photo.create')->middleware('auth');
-    Route::post('store', 'PhotoController@store')->name('photo.store')->middleware('auth');
-    Route::get('show/{photo}', 'PhotoController@show')->name('photo.show');
-    Route::get('edit/{photo}', 'PhotoController@edit')->name('photo.edit')->middleware('auth');
-    Route::post('update/{photo}', 'PhotoController@update')->name('photo.update')->middleware('auth');
-    Route::post('destroy/{photo}', 'PhotoController@destroy')->name('photo.destroy')->middleware('auth');
+Route::prefix('photo')->name('photo.')->group(function () {
+    Route::get('index', 'PhotoController@index')->name('index');
+    Route::get('create', 'PhotoController@create')->name('create')->middleware('auth');
+    Route::post('store', 'PhotoController@store')->name('store')->middleware('auth');
+    Route::get('show/{photo}', 'PhotoController@show')->name('show');
+    Route::get('edit/{photo}', 'PhotoController@edit')->name('edit')->middleware('auth');
+    Route::post('update/{photo}', 'PhotoController@update')->name('update')->middleware('auth');
+    Route::post('destroy/{photo}', 'PhotoController@destroy')->name('destroy')->middleware('auth');
 
-    Route::put('like/{id}', 'PhotoController@like')->name('photo.like')->middleware('auth');
-    Route::delete('like/{id}', 'PhotoController@unlike')->name('photo.unlike')->middleware('auth');
+    Route::put('like/{id}', 'PhotoController@like')->name('like')->middleware('auth');
+    Route::delete('like/{id}', 'PhotoController@unlike')->name('unlike')->middleware('auth');
 });
-
-Route::group(['prefix' => 'user'], function() {
-    Route::get('show/{user_id}', 'UserController@show')->name('user.show');
-    Route::get('mypage', 'UserController@mypage')->name('user.mypage')->middleware('auth');
-    Route::get('edit', 'UserController@edit')->name('user.edit')->middleware('auth');
-    Route::post('update', 'UserController@update')->name('user.update')->middleware('auth');
+Route::prefix('user')->name('user.')->group(function () {
+    Route::get('show/{user_id}', 'UserController@show')->name('show');
+    Route::get('mypage', 'UserController@mypage')->name('mypage')->middleware('auth');
+    Route::get('edit', 'UserController@edit')->name('edit')->middleware('auth');
+    Route::post('update', 'UserController@update')->name('update')->middleware('auth');
 });
 
 // Route::group(['prefix' => 'news'], function() {
@@ -51,7 +49,6 @@ Route::group(['prefix' => 'contact'], function() {
     Route::post('confirm', 'ContactController@confirm')->name('contact.confirm');
     Route::post('complete', 'ContactController@complete')->name('contact.complete');
 });
-
 
 // 管理者
 Route::group(['prefix' => 'admin'], function() {

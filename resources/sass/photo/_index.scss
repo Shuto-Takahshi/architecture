@@ -1,15 +1,10 @@
-.photo-index {
-    // .container-fluid {
-    //     max-width: 1200px;
-    // }
-    // Within style tags in your html file
+.container-fluid {
     * { box-sizing: border-box; }
     .grid:after {
         content: '';
         display: block;
         clear: both;
     }
-
     .grid-sizer,
     .grid-item {
         width: 25%;
@@ -26,28 +21,6 @@
             width: 33.333%;
         }
     }
-
-    /* To change the amount of columns on larger devices, uncomment the code below */
-
-    /* @media (min-width: 768px) and (max-width: 991px) {
-    .grid-sizer,
-    .grid-item {
-        width: 33.333%;
-    }
-    }
-    @media (min-width: 992px) and (max-width: 1199px) {
-    .grid-sizer,
-    .grid-item {
-        width: 25%;
-    }
-    }
-    @media (min-width: 1200px) {
-    .grid-sizer,
-    .grid-item {
-        width: 20%;
-    }
-    } */
-
     .grid-item {
         float: left;
         padding: 8px;
@@ -57,7 +30,7 @@
             position: relative;
         }
     }
-    .photo-top {
+    .photo-header {
         position: absolute;
         top: 0px;
         left: 0px;
@@ -67,15 +40,12 @@
             font-size: 14px;
         }
     }
-    .photo-bottom {
+    .photo-footer {
         position: absolute;
         bottom: 0px;
         left: 0px;
         width: max-content;
         visibility: hidden;
-        p {
-            font-size: 14px;
-        }
     }
     .user-img {
         width: 28px;
@@ -92,24 +62,33 @@
         .photo-img {
             opacity: 0.8;
         }
-        .photo-top {
+        .photo-header {
             visibility: visible;
         }
-        .photo-bottom {
+        .photo-footer {
             visibility: visible;
         }
     }
-    .card-img {
-        width: 100%;
-    }
-    .card-img-top {
-        width: 100%;
-
-    }
-
-
-
-
 }
+/* To change the amount of columns on larger devices, uncomment the code below */
+
+/* @media (min-width: 768px) and (max-width: 991px) {
+.grid-sizer,
+.grid-item {
+    width: 33.333%;
+}
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+.grid-sizer,
+.grid-item {
+    width: 25%;
+}
+}
+@media (min-width: 1200px) {
+.grid-sizer,
+.grid-item {
+    width: 20%;
+}
+} */
 
 

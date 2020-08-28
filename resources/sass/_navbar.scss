@@ -22,7 +22,7 @@
         width: 32px;
         height: 32px;
     }
-    .auth-btn a {
+    .nav-btn a {
         font-size: 14px;
         @media (max-width:767px) {
             font-size: 12px;
@@ -44,6 +44,9 @@
             font-size: 14px;
             color: black;
         }
+    }
+    .dropdown-item:active {
+        background-color: white;
     }
 }
 

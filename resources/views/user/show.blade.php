@@ -10,11 +10,7 @@
                 <div class="col p-0">
                     <div class="mb-3 d-md-flex">
                         <div class="pr-md-3">
-                            @if ($user->image_path)
-                                <img class="user-img" src="{{ asset('storage/user_images/' . $user->image_path) }}"/>
-                            @else
-                                <img class="user-img" src="{{ asset('/images/default_user_image.png') }}" alt="image">
-                            @endif
+                            <img class="my-img" src="{{ $user->image_path ? asset('storage/user_images/' . $user->image_path) : asset('/images/default_user_image.png')}}" alt="image">
                         </div>
                         <div class="pl-md-3">
                             <div class="font-weight-bold profile-name">{{ $user->name }}</div>
@@ -59,12 +55,11 @@
             <div class="container-fluid">
                 <div class="grid">
                     <div class="grid-sizer"></div>
-                    @foreach ($myphotos as $photo)
+                    @foreach ($photos as $photo)
                         <div class="grid-item">
                             <div class="img">
-                                <a href="">
-                            {{-- <a href="{{ route('photo.show ')}}"> --}}
-                                    <img class="" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image" style="width: 100%">
+                                <a href="{{ route('photo.show', ['photo' => $photo]) }}">
+                                    <img class="photo-img" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image">
                                 </a>
                             </div>
                         </div>
@@ -76,9 +71,4 @@
         </div>
     </div>
 </div>
-
-
-
 @endsection
-
-@include('layouts.footer')

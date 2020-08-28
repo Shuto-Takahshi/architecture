@@ -7,7 +7,9 @@
     <div class="container bg-white p-5">
         <div class="row mx-auto">
             <div class="col">
+
                 @include('error_list')
+
                 <form method="POST" action="{{ route('user.update')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
