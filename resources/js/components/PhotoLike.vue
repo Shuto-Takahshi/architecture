@@ -2,7 +2,7 @@
     <div>
         <button
             type="button"
-            class="btn m-0 p-1 shadow-none"
+            class="btn m-0 p-0 shadow-none"
         >
             <i class="fas fa-heart mr-1"
             />

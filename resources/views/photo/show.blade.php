@@ -21,7 +21,6 @@
                 <div class="p-2">
                     <div class="photo-item my-auto">
                         <photo-like></photo-like>
-                        {{-- <i class="far fa-heart"></i> --}}
                     </div>
                     {{-- タイトル --}}
                     <div class="photo-item">
