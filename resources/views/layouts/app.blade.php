@@ -39,6 +39,8 @@
 
   @yield('footer')
 
+  <script src="{{ mix('js/app.js') }}"></script>
+
   <script>
     // init Masonry
     var $grid = $('.grid').masonry({
@@ -52,8 +54,26 @@
       $grid.masonry();
     });
   </script>
+  <script>
+    document.getElementById('file-sample').addEventListener('change', function (e) {
+      // 1枚だけ表示する
+      var file = e.target.files[0];
+      // ファイルリーダー作成
+      var fileReader = new FileReader();
+      fileReader.onload = function() {
+          // Data URIを取得
+          var dataUri = this.result;
 
-  <script src="{{ mix('js/app.js') }}"></script>
+          // img要素に表示
+          var img = document.getElementById('file-preview');
+          img.src = dataUri;
+          img.style.display = "block";
+      }
+      // ファイルをData URIとして読み込む
+      fileReader.readAsDataURL(file);
+    });
+  </script>
+
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

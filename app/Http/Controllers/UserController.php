@@ -16,8 +16,8 @@ class UserController extends Controller
     public function show(Request $request)
     {
         $user = User::where('id', $request->user_id)->first();
-        $myphotos = $user->photos->sortByDesc('created_at');
-        return view('user.show', ['user' => $user, 'myphotos' => $myphotos]);
+        $photos = $user->photos->sortByDesc('created_at');
+        return view('user.show', ['user' => $user, 'photos' => $photos]);
     }
 
     public function mypage(Request $request)

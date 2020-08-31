@@ -61,6 +61,8 @@
                                 <a href="{{ route('photo.show', ['photo' => $photo]) }}">
                                     <img class="photo-img" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image">
                                 </a>
+                                @include('photo.header')
+                                @include('photo.footer')
                             </div>
                         </div>
                     @endforeach

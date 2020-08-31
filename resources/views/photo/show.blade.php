@@ -20,7 +20,11 @@
                 <img class="photo-img" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image">
                 <div class="p-2">
                     <div class="photo-item my-auto">
-                        <photo-like></photo-like>
+                        <photo-like
+                            :initial-is-liked-by='@json($photo->isLikedBy(Auth::user()))'
+                            :initial-count-likes='@json($photo->count_likes)'
+                        >
+                        </photo-like>
                     </div>
                     {{-- タイトル --}}
                     <div class="photo-item">
