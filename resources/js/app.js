@@ -4,8 +4,6 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-// require('./bootstrap');
-
 window.Vue = require('vue');
 
 /**
@@ -27,7 +25,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// import './bootstrap'
+import './bootstrap'
 import Vue from 'vue'
 import PhotoLike from './components/PhotoLike'
 

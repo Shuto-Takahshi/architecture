@@ -99,4 +99,25 @@ class PhotoController extends Controller
         $photo->delete();
         return redirect()->route('photo.index');
     }
+
+    public function like(Request $request, Photo $photo)
+    {
+        $photo->likes()->detach($request->user()->id);
+        $photo->likes()->attach($request->user()->id);
+
+        return [
+            'id' => $photo->id,
+            'countLikes' => $photo->count_likes,
+        ];
+    }
+
+    public function unlike(Request $request, Photo $photo)
+    {
+        $photo->likes()->detach($request->user()->id);
+
+        return [
+            'id' => $photo->id,
+            'countLikes' => $photo->count_likes,
+        ];
+    }
 }
