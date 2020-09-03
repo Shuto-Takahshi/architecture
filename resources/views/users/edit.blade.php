@@ -10,7 +10,7 @@
 
                 @include('error_list')
 
-                <form method="POST" action="{{ route('user.update')}}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('users.update')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="file-sample" class="mb-0">

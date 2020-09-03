@@ -6,7 +6,7 @@
         </button>
     </a>
     <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item" href="{{ route("photo.edit", ['photo' => $photo]) }}">
+        <a class="dropdown-item" href="{{ route("photos.edit", ['photo' => $photo]) }}">
             <i class="fas fa-pen mr-1"></i>投稿を更新する
         </a>
     <div class="dropdown-divider"></div>
@@ -26,7 +26,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="{{ route('photo.destroy', ['photo' => $photo]) }}">
+            <form method="POST" action="{{ route('photos.destroy', ['photo' => $photo]) }}">
                 @csrf
                 <div class="modal-body">
                     {{ $photo->title }}を削除します。よろしいですか？

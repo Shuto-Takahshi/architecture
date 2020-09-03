@@ -17,20 +17,20 @@ class UserController extends Controller
     {
         $user = User::where('id', $request->user_id)->first();
         $photos = $user->photos->sortByDesc('created_at');
-        return view('user.show', ['user' => $user, 'photos' => $photos]);
+        return view('users.show', ['user' => $user, 'photos' => $photos]);
     }
 
     public function mypage(Request $request)
     {
         $user = Auth::user();
         $photos = $user->photos->sortByDesc('created_at');
-        return view('user.mypage', ['user' => $user, 'photos' => $photos]);
+        return view('users.mypage', ['user' => $user, 'photos' => $photos]);
     }
 
     public function edit()
     {
         $user = Auth::user();
-        return view('user.edit', ['user' => $user]);
+        return view('users.edit', ['user' => $user]);
     }
 
     public function update(Request $request)
@@ -46,6 +46,6 @@ class UserController extends Controller
         $user->body = $request->body;
         $user->save();
 
-        return redirect()->route('user.mypage');
+        return redirect()->route('users.mypage');
     }
 }

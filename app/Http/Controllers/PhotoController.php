@@ -17,7 +17,7 @@ class PhotoController extends Controller
     public function index()
     {
         $photos = Photo::all()->sortByDesc('created_at');
-        return view('photo.index', ['photos' => $photos]);
+        return view('photos.index', ['photos' => $photos]);
     }
 
     /**
@@ -27,7 +27,7 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        return view('photo.create');
+        return view('photos.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class PhotoController extends Controller
         $photo->user_id = $request->user()->id;
         $photo->save();
 
-        return redirect()->route('photo.index');
+        return redirect()->route('photos.index');
     }
 
     /**
@@ -59,7 +59,7 @@ class PhotoController extends Controller
 
     public function show(Photo $photo)
     {
-        return view('photo.show', ['photo' => $photo]);
+        return view('photos.show', ['photo' => $photo]);
     }
 
     /**
@@ -70,7 +70,7 @@ class PhotoController extends Controller
      */
     public function edit(Photo $photo)
     {
-        return view('photo.edit', ['photo' => $photo]);
+        return view('photos.edit', ['photo' => $photo]);
     }
 
     /**
@@ -85,7 +85,7 @@ class PhotoController extends Controller
         $photo->fill($request->all());
         $photo->save();
 
-        return redirect()->route('photo.index');
+        return redirect()->route('photos.index');
     }
 
     /**
@@ -97,7 +97,7 @@ class PhotoController extends Controller
     public function destroy(Photo $photo)
     {
         $photo->delete();
-        return redirect()->route('photo.index');
+        return redirect()->route('photos.index');
     }
 
     public function like(Request $request, Photo $photo)

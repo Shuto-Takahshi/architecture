@@ -9,14 +9,14 @@
 
 @import "navbar";
 
-@import "photo/index";
-@import "photo/show";
-@import "photo/create";
+@import "photos/index";
+@import "photos/show";
+@import "photos/create";
+@import "photos/header";
+@import "photos/footer";
 
-@import "user/show";
-@import "user/edit";
-
-@import "news/index";
+@import "users/show";
+@import "users/edit";
 
 @import "contact/index";
 

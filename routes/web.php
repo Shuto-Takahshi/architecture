@@ -17,7 +17,7 @@
 
 Auth::routes();
 // 一般ユーザー
-Route::prefix('photo')->name('photo.')->group(function () {
+Route::prefix('photos')->name('photos.')->group(function () {
     Route::get('index', 'PhotoController@index')->name('index');
     Route::get('create', 'PhotoController@create')->name('create')->middleware('auth');
     Route::post('store', 'PhotoController@store')->name('store')->middleware('auth');
@@ -29,9 +29,13 @@ Route::prefix('photo')->name('photo.')->group(function () {
     Route::put('{photo}/like', 'PhotoController@like')->name('like')->middleware('auth');
     Route::delete('{photo}/like', 'PhotoController@unlike')->name('unlike')->middleware('auth');
 });
-// Route::resource('photos', 'PhotoController')->except(['index','show'])->middleware('auth');
+// Route::resource('/photos', 'PhotoController')->except(['index','show'])->middleware('auth');
+// Route::prefix('photos')->name('photos.')->group(function () {
+//     Route::put('/{photo}/like', 'PhotoController@like')->name('like')->middleware('auth');
+//     Route::delete('/{photo}/like', 'PhotoController@unlike')->name('unlike')->middleware('auth');
+// });
 
-Route::prefix('user')->name('user.')->group(function () {
+Route::prefix('users')->name('users.')->group(function () {
     Route::get('show/{user_id}', 'UserController@show')->name('show');
     Route::get('mypage', 'UserController@mypage')->name('mypage')->middleware('auth');
     Route::get('edit', 'UserController@edit')->name('edit')->middleware('auth');

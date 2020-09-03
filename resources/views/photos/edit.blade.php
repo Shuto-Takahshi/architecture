@@ -13,7 +13,7 @@
 
                 @include('error_list')
 
-               <form method="POST" action="{{ route('photo.update', ['photo' => $photo->id]) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('photos.update', ['photo' => $photo->id]) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         {{-- <label for="file-sample" class="mb-0"></label>

@@ -9,12 +9,12 @@
             <div class="col p-0 mx-auto bg-white">
                 {{-- ユーザー名 --}}
                 <div class="d-flex p-2">
-                    <a href="{{ route('user.show', ['user_id' => $photo->user_id]) }}" class="d-flex">
+                    <a href="{{ route('users.show', ['user_id' => $photo->user_id]) }}" class="d-flex">
                         <img class="user-img border mr-1" src="{{ $photo->user->image_path ? asset('storage/user_images/' . $photo->user->image_path) : asset('/images/default_user_image.png')}}" alt="image">
                     </a>
-                    <a href="{{ route('user.show', ['user_id' => $photo->user_id]) }}" class="my-auto text-dark user-name">{{ $photo->user->name }}</a>
+                    <a href="{{ route('users.show', ['user_id' => $photo->user_id]) }}" class="my-auto text-dark user-name">{{ $photo->user->name }}</a>
                     @if( Auth::id() === $photo->user_id )
-                        @include('photo.dropdown')
+                        @include('photos.dropdown')
                     @endif
                 </div>
                 <img class="photo-img" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image">
@@ -24,7 +24,7 @@
                             :initial-is-liked-by='@json($photo->isLikedBy(Auth::user()))'
                             :initial-count-likes='@json($photo->count_likes)'
                             :authorized='@json(Auth::check())'
-                            endpoint="{{ route('photo.like', ['photo' => $photo]) }}"
+                            endpoint="{{ route('photos.like', ['photo' => $photo]) }}"
                         >
                         </photo-like>
                     </div>
@@ -36,18 +36,17 @@
                     <div class="photo-item">
                     <p class="font-weight-light mb-0 photo-content">{{ $photo->body }}</p>
                     </div>
-                    <div class="photo-item">
-                        {{-- タグ --}}
-                        <a href="" class="bg-light rounded border text-dark photo-tag">タグ1</a>
-                        <a href="" class="bg-light rounded border text-dark photo-tag">タグ2</a>
-                        <a href="" class="bg-light rounded border text-dark photo-tag">タグ3</a>
-                    </div>
                     <div class="">
                         <i class="fas fa-map-marker-alt mr-2"></i>{{ $photo->address }}
                     </div>
                 </div>
             </div>
         </div>
+        {{-- <div class="row">
+            <div class="col">
+                @include('photos.grid')
+            </div>
+        </div> --}}
     </div>
 </div>
 

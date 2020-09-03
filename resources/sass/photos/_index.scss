@@ -24,40 +24,18 @@
     .grid-item {
         float: left;
         padding: 8px;
-        .img {
+        .grid-img {
             display: block;
             max-width: 100%;
             position: relative;
         }
-    }
-    .photo-header {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: max-content;
-        visibility: hidden;
-        p {
-            font-size: 14px;
-        }
-    }
-    .photo-footer {
-        position: absolute;
-        bottom: 0px;
-        left: 0px;
-        width: max-content;
-        visibility: hidden;
-    }
-    .user-img {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
     }
     .photo-img {
         width: 100%;
         height: auto;
         cursor: zoom-in;
     }
-    .img:hover {
+    .grid-img:hover {
         background-color: black;
         .photo-img {
             opacity: 0.8;

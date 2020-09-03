@@ -11058,60 +11058,14 @@ a.text-dark:focus {
   padding: 8px;
 }
 
-.container-fluid .grid-item .img,
-.container-sm .grid-item .img,
-.container-md .grid-item .img,
-.container-lg .grid-item .img,
-.container-xl .grid-item .img {
+.container-fluid .grid-item .grid-img,
+.container-sm .grid-item .grid-img,
+.container-md .grid-item .grid-img,
+.container-lg .grid-item .grid-img,
+.container-xl .grid-item .grid-img {
   display: block;
   max-width: 100%;
   position: relative;
-}
-
-.container-fluid .photo-header,
-.container-sm .photo-header,
-.container-md .photo-header,
-.container-lg .photo-header,
-.container-xl .photo-header {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  visibility: hidden;
-}
-
-.container-fluid .photo-header p,
-.container-sm .photo-header p,
-.container-md .photo-header p,
-.container-lg .photo-header p,
-.container-xl .photo-header p {
-  font-size: 14px;
-}
-
-.container-fluid .photo-footer,
-.container-sm .photo-footer,
-.container-md .photo-footer,
-.container-lg .photo-footer,
-.container-xl .photo-footer {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  visibility: hidden;
-}
-
-.container-fluid .user-img,
-.container-sm .user-img,
-.container-md .user-img,
-.container-lg .user-img,
-.container-xl .user-img {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
 }
 
 .container-fluid .photo-img,
@@ -11124,35 +11078,35 @@ a.text-dark:focus {
   cursor: zoom-in;
 }
 
-.container-fluid .img:hover,
-.container-sm .img:hover,
-.container-md .img:hover,
-.container-lg .img:hover,
-.container-xl .img:hover {
+.container-fluid .grid-img:hover,
+.container-sm .grid-img:hover,
+.container-md .grid-img:hover,
+.container-lg .grid-img:hover,
+.container-xl .grid-img:hover {
   background-color: black;
 }
 
-.container-fluid .img:hover .photo-img,
-.container-sm .img:hover .photo-img,
-.container-md .img:hover .photo-img,
-.container-lg .img:hover .photo-img,
-.container-xl .img:hover .photo-img {
+.container-fluid .grid-img:hover .photo-img,
+.container-sm .grid-img:hover .photo-img,
+.container-md .grid-img:hover .photo-img,
+.container-lg .grid-img:hover .photo-img,
+.container-xl .grid-img:hover .photo-img {
   opacity: 0.8;
 }
 
-.container-fluid .img:hover .photo-header,
-.container-sm .img:hover .photo-header,
-.container-md .img:hover .photo-header,
-.container-lg .img:hover .photo-header,
-.container-xl .img:hover .photo-header {
+.container-fluid .grid-img:hover .photo-header,
+.container-sm .grid-img:hover .photo-header,
+.container-md .grid-img:hover .photo-header,
+.container-lg .grid-img:hover .photo-header,
+.container-xl .grid-img:hover .photo-header {
   visibility: visible;
 }
 
-.container-fluid .img:hover .photo-footer,
-.container-sm .img:hover .photo-footer,
-.container-md .img:hover .photo-footer,
-.container-lg .img:hover .photo-footer,
-.container-xl .img:hover .photo-footer {
+.container-fluid .grid-img:hover .photo-footer,
+.container-sm .grid-img:hover .photo-footer,
+.container-md .grid-img:hover .photo-footer,
+.container-lg .grid-img:hover .photo-footer,
+.container-xl .grid-img:hover .photo-footer {
   visibility: visible;
 }
 
@@ -11214,8 +11168,33 @@ a.text-dark:focus {
   max-width: 800px;
 }
 
+.photo-header {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  visibility: hidden;
+}
+
+.photo-footer {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  visibility: hidden;
+}
+
+.photo-footer .user-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
 .profile-show .container {
-  padding-top: 24px;
   max-width: 960px;
 }
 
@@ -11287,22 +11266,6 @@ a.text-dark:focus {
 
 .profile-edit .text-area {
   margin: 16px 0px;
-}
-
-.news-index .container {
-  max-width: 840px;
-}
-
-.news-index .news {
-  padding: 24px 0px;
-}
-
-.news-index .news-title {
-  font-size: 32px;
-}
-
-.news-index .news-img {
-  height: 100%;
 }
 
 .contact-index .container {

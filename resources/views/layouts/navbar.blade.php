@@ -1,9 +1,9 @@
 @section('navbar')
 
 
-<nav class="navbar navbar-expand navbar-light border-bottom py-1 bg-white fixed-top px-md-4">
+<nav class="navbar navbar-expand navbar-light py-1 bg-white fixed-top px-md-4">
     <div class="navbar-brand home">
-        <a class="text-dark" href="{{ route('photo.index') }}">ArchiGallery</a>
+        <a class="text-dark" href="{{ route('photos.index') }}">ArchiGallery</a>
     </div>
 
     {{-- form --}}
@@ -46,35 +46,18 @@
                     @endif
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item py-2" href="{{ route('user.mypage') }}"><i class="fas fa-user mr-1"></i>プロフィール</a>
-                    <a class="dropdown-item py-2" href="{{ route('user.edit') }}"><i class="fas fa-cog mr-1"></i>設定</a>
+                    <a class="dropdown-item py-2" href="{{ route('users.mypage') }}"><i class="fas fa-user mr-1"></i>プロフィール</a>
+                    <a class="dropdown-item py-2" href="{{ route('users.edit') }}"><i class="fas fa-cog mr-1"></i>設定</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item py-2" href="#"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt mr-1"></i>ログアウト</a>
                     <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none">
                         @csrf
                     </form>
                 </div>
-                {{-- <ul class="dropdown-menu dropdown-menu-right">
-                    <li class="dropdown-item">
-                        <a class="" href="{{ route('user.mypage') }}"><i class="fas fa-user mr-1"></i>プロフィール</a>
-                    </li>
-                    <li class="dropdown-item">
-                        <a class="" href="{{ route('user.edit') }}"><i class="fas fa-cog mr-1"></i>設定</a>
-                    </li>
-                    <li class="text-center">
-                    </li>
-                    <div class="dropdown-divider"></div>
-                    <li class="dropdown-item">
-                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
-                        <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none">
-                            @csrf
-                        </form>
-                    </li>
-                </ul> --}}
             </div>
         </li>
         <li class="nav-item mr-2 my-auto nav-btn">
-            <a class="btn btn-primary" href="{{ route('photo.create') }}"><i class="fas fa-plus mr-1"></i>投稿</a>
+            <a class="btn btn-primary" href="{{ route('photos.create') }}"><i class="fas fa-plus mr-1"></i>投稿</a>
         </li>
         @endauth
 
