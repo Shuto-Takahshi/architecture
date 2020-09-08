@@ -28,10 +28,12 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 import './bootstrap'
 import Vue from 'vue'
 import PhotoLike from './components/PhotoLike'
+import FollowButton from './components/FollowButton'
 
 const app = new Vue({
     el: '#app',
     components: {
         PhotoLike,
+        FollowButton,
     }
 });

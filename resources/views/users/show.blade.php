@@ -15,12 +15,17 @@
                         <div class="pl-md-3">
                             <div class="font-weight-bold profile-name">{{ $user->name }}</div>
                             <div class="profile-btn">
-                                <a class="btn btn-primary shadow-none" href=""><i class="fas fa-user-plus mr-1"></i>フォロー</a>
+                                <follow-button class="ml-auto"
+                                :initial-is-followed-by='@json($user->isFollowedBy(Auth::user()))'
+                                :authorized='@json(Auth::check())'
+                                endpoint="{{ route('users.follow', ['user' => $user]) }}"
+                                >
+                            </follow-button>
                             </div>
                             <p class=" mb-2">{{ $user->body }}</p>
                             <div>
-                                <a href="" class=""><span class="font-weight-bold">100 </span>フォロワー</a>
-                                <a href="" class=""><span class="font-weight-bold">100 </span>フォロー</a>
+                                <a href="" class="text-muted"><span class="font-weight-bold">{{ $user->count_followings }} </span>フォロワー</a>
+                                <a href="" class="text-muted"><span class="font-weight-bold">{{ $user->count_followers }} </span>フォロー</a>
                             </div>
                         </div>
                     </div>
