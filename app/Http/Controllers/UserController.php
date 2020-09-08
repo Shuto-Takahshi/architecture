@@ -48,4 +48,33 @@ class UserController extends Controller
 
         return redirect()->route('users.mypage');
     }
+
+    public function follow(Request $request)
+    {
+        $user = User::where('id', $request->user_id)->first();
+
+        if ($user->id === $request->user()->id)
+        {
+            return abort('404', 'Cannot follow yourself.');
+        }
+
+        $request->user()->followings()->detach($user);
+        $request->user()->followings()->attach($user);
+
+        return ['user' => $user];
+    }
+
+    public function unfollow(Request $request)
+    {
+        $user = User::where('id', $request->user_id)->first();
+
+        if ($user->id === $request->user()->id)
+        {
+            return abort('404', 'Cannot follow yourself.');
+        }
+
+        $request->user()->followings()->detach($user);
+
+        return ['user' => $user];
+    }
 }

@@ -40,6 +40,10 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::get('mypage', 'UserController@mypage')->name('mypage')->middleware('auth');
     Route::get('edit', 'UserController@edit')->name('edit')->middleware('auth');
     Route::post('update', 'UserController@update')->name('update')->middleware('auth');
+    Route::middleware('auth')->group(function () {
+        Route::put('{user_id}/follow', 'UserController@follow')->name('follow');
+        Route::delete('{user_id}/follow', 'UserController@unfollow')->name('unfollow');
+    });
 });
 
 // Route::group(['prefix' => 'news'], function() {
