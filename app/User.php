@@ -59,6 +59,16 @@ class User extends Authenticatable
             : false;
     }
 
+    public function getCountFollowersAttribute()
+    {
+        return $this->followers->count();
+    }
+
+    public function getCountFollowingsAttribute()
+    {
+        return $this->followings->count();
+    }
+
     public static $rules = [
         'name' => 'required',
     ];

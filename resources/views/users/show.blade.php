@@ -24,8 +24,8 @@
                             </div>
                             <p class=" mb-2">{{ $user->body }}</p>
                             <div>
-                                <a href="" class=""><span class="font-weight-bold">100 </span>フォロワー</a>
-                                <a href="" class=""><span class="font-weight-bold">100 </span>フォロー</a>
+                                <a href="" class="text-muted"><span class="font-weight-bold">{{ $user->count_followings }} </span>フォロワー</a>
+                                <a href="" class="text-muted"><span class="font-weight-bold">{{ $user->count_followers }} </span>フォロー</a>
                             </div>
                         </div>
                     </div>
