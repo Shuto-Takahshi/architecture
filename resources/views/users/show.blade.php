@@ -15,7 +15,7 @@
                         <div class="pl-md-3">
                             <div class="font-weight-bold profile-name">{{ $user->name }}</div>
                             <div class="profile-btn">
-                                <a class="btn btn-primary shadow-none" href=""><i class="fas fa-user-plus mr-1"></i>フォロー</a>
+                                <follow-button class="ml-auto"></follow-button>
                             </div>
                             <p class=" mb-2">{{ $user->body }}</p>
                             <div>
