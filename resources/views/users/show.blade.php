@@ -15,7 +15,7 @@
                         <div class="pl-md-3">
                             <div class="font-weight-bold profile-name">{{ $user->name }}</div>
                             <div class="profile-btn">
-                                <follow-button class="ml-auto"></follow-button>
+                                <follow-button class="ml-auto" :initial-is-followed-by='@json($user->isFollowedBy(Auth::user()))'></follow-button>
                             </div>
                             <p class=" mb-2">{{ $user->body }}</p>
                             <div>
