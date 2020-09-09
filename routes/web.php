@@ -30,10 +30,6 @@ Route::prefix('photos')->name('photos.')->group(function () {
     Route::delete('{photo}/like', 'PhotoController@unlike')->name('unlike')->middleware('auth');
 });
 // Route::resource('/photos', 'PhotoController')->except(['index','show'])->middleware('auth');
-// Route::prefix('photos')->name('photos.')->group(function () {
-//     Route::put('/{photo}/like', 'PhotoController@like')->name('like')->middleware('auth');
-//     Route::delete('/{photo}/like', 'PhotoController@unlike')->name('unlike')->middleware('auth');
-// });
 
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('show/{user_id}', 'UserController@show')->name('show');
@@ -45,12 +41,6 @@ Route::prefix('users')->name('users.')->group(function () {
         Route::delete('{user_id}/follow', 'UserController@unfollow')->name('unfollow');
     });
 });
-
-// Route::group(['prefix' => 'news'], function() {
-//     Route::get('index', 'NewsController@index')->name('news.index');
-//     // Route::get('show/{id}', 'NewsController@show')->name('news.show');
-//     Route::get('show', 'NewsController@show')->name('news.show');
-// });
 
 Route::get('about/index', 'AboutController@index')->name('about.index');
 
@@ -82,16 +72,6 @@ Route::group(['prefix' => 'admin'], function() {
         Route::post('update/{id}', 'Admin\UserController@update')->name('admin.user.update');
         Route::post('destroy/{id}', 'Admin\UserController@destroy')->name('admin.user.destroy');
     });
-
-    // Route::group(['prefix' => 'news'], function() {
-    //     Route::get('index', 'Admin\NewsController@index')->name('admin.news.index');
-    //     Route::get('create', 'Admin\NewsController@create')->name('admin.news.create');
-    //     Route::post('store', 'Admin\NewsController@store')->name('admin.news.store');
-    //     Route::get('show/{id}', 'Admin\NewsController@show')->name('admin.news.show');
-    //     Route::get('edit/{id}', 'Admin\NewsController@edit')->name('admin.news.edit');
-    //     Route::post('update/{id}', 'Admin\NewsController@update')->name('admin.news.update');
-    //     Route::post('destroy/{id}', 'Admin\NewsController@destroy')->name('admin.news.destroy');
-    // });
 
     Route::get('about/index', 'Admin\AboutController@index')->name('admin.about.index');
 
