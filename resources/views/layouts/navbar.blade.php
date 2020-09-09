@@ -1,6 +1,5 @@
 @section('navbar')
 
-
 <nav class="navbar navbar-expand navbar-light py-1 bg-white fixed-top px-md-4">
     <div class="navbar-brand home">
         <a class="text-dark" href="{{ route('photos.index') }}">ArchiGallery</a>
@@ -26,7 +25,6 @@
             </button>
         </li>
 
-        {{-- 新規登録/ログイン --}}
         @guest
         <li class="nav-item mr-2 my-auto nav-btn">
             <a class="btn p-0" href="{{ route('login') }}">ログイン</a>
@@ -34,7 +32,6 @@
         </li>
         @endguest
 
-        {{-- ユーザーアイコン --}}
         @auth
         <li class="nav-item mr-2">
             <div class="dropdown">
@@ -78,6 +75,9 @@
                     </li>
                     <li class="p-2">
                         <a class="" href="#">プライバシーポリシー</a>
+                    </li>
+                    <li class="p-2">
+                        <p class="m-0" style="font-size: 12px">© 2020 ArchiGallery</p>
                     </li>
                 </ul>
             </div>

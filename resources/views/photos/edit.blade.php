@@ -1,23 +1,18 @@
 @extends('layouts.app')
 @include('layouts.navbar')
 
-
 @section('content')
 <div class="photo-create">
-    <div class="container py-5">
-        <div class="bg-white shadow-sm">
+    <div class="container py-md-5">
+        <div class="bg-white">
             <div class="p-5">
                 <div class="create">
                     <h2>投稿編集</h2>
                 </div>
-
                 @include('error_list')
-
                 <form method="POST" action="{{ route('photos.update', ['photo' => $photo->id]) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        {{-- <label for="file-sample" class="mb-0"></label>
-                        <input type="file" id="file-sample" name="photo_image" class="form-control-file"> --}}
                         <img class="photo-img" id="file-preview" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" style="width: 100%">
                     </div>
                     <div class="form-group">
@@ -32,10 +27,6 @@
                         <label></label>
                     <input class="form-control" type="text" name="address" value="{{ old('address', $photo->address) }}" aria-label="address">
                     </div>
-                    {{-- <div class="form-group">
-                        <label></label>
-                        <input class="form-control" type="text" placeholder="タグ" aria-label="text">
-                    </div> --}}
                     <div class="form-group">
                         <button class="btn btn-primary" type="submit">更新する</button>
                     </div>
@@ -65,7 +56,4 @@
     });
 </script>
 
-
 @endsection
-
-@include('layouts.footer')

@@ -3,12 +3,13 @@
         <button
             class="btn-sm shadow-none border border-primary p-2"
             :class="buttonColor"
+            @click="clickFollow"
         >
             <i
                 class="mr-1"
                 :class="buttonIcon"
-                @click="clickFollow"
-            ></i>
+            >
+            </i>
         {{ buttonText }}
         </button>
     </div>
@@ -53,6 +54,7 @@
         },
         methods: {
             clickFollow() {
+                console.log('test')
                 if (!this.authorized) {
                     alert('フォロー機能はログイン中のみ使用できます')
                     return

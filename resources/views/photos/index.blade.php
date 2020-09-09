@@ -2,7 +2,6 @@
 @include('layouts.navbar')
 
 @section('content')
-<div class="container-fluid">
-    @include('photos.grid')
-</div>
+
+@include('photos.grid')
 @endsection

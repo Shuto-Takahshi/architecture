@@ -1,4 +1,3 @@
-<!-- dropdown -->
 <div class="dropdown ml-auto">
     <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <button type="button" class="btn btn-link text-muted my-auto p-0">
@@ -15,9 +14,7 @@
         </a>
     </div>
 </div>
-<!-- dropdown -->
 
-<!-- modal -->
 <div id="modal-delete-{{ $photo->user_id }}" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -31,12 +28,11 @@
                 <div class="modal-body">
                     {{ $photo->title }}を削除します。よろしいですか？
                 </div>
-                <div class="modal-footer justify-content-between">
-                    <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
+                <div class="modal-footer">
+                    <a class="btn btn-outline-light border" data-dismiss="modal">キャンセル</a>
                     <button type="submit" class="btn btn-danger">削除する</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<!-- modal -->
