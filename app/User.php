@@ -70,6 +70,6 @@ class User extends Authenticatable
     }
 
     public static $rules = [
-        'name' => 'required',
+        'user_name' => 'required',
     ];
 }
