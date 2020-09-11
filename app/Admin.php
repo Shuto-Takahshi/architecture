@@ -36,40 +36,4 @@ class Admin extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function photos()
-    {
-        return $this->hasMany('App\Photo');
-    }
-
-    public function followers()
-    {
-        return $this->belongsToMany('App\User', 'follows', 'followee_id', 'follower_id')->withTimestamps();
-    }
-
-    public function followings()
-    {
-        return $this->belongsToMany('App\User', 'follows', 'follower_id', 'followee_id')->withTimestamps();
-    }
-
-    public function isFollowedBy(?User $user)
-    {
-        return $user
-            ? (bool)$this->followers->where('id', $user->id)->count()
-            : false;
-    }
-
-    public function getCountFollowersAttribute()
-    {
-        return $this->followers->count();
-    }
-
-    public function getCountFollowingsAttribute()
-    {
-        return $this->followings->count();
-    }
-
-    public static $rules = [
-        'user_name' => 'required',
-    ];
 }
