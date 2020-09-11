@@ -42,8 +42,6 @@ Route::prefix('users')->name('users.')->group(function () {
     });
 });
 
-Route::get('about/index', 'AboutController@index')->name('about.index');
-
 Route::group(['prefix' => 'contact'], function() {
     Route::get('index', 'ContactController@index')->name('contact.index');
     Route::post('confirm', 'ContactController@confirm')->name('contact.confirm');
@@ -52,35 +50,43 @@ Route::group(['prefix' => 'contact'], function() {
 
 // 管理者
 Route::group(['prefix' => 'admin'], function() {
-    Route::group(['prefix' => 'photo'], function() {
-        Route::get('index', 'Admin\PhotoController@index')->name('admin.photo.index');
-        Route::get('create', 'Admin\PhotoController@create')->name('admin.photo.create');
-        Route::post('store', 'Admin\PhotoController@store')->name('admin.photo.store');
-        Route::get('show/{id}', 'Admin\PhotoController@show')->name('admin.photo.show');
-        Route::get('edit/{id}', 'Admin\PhotoController@edit')->name('admin.photo.edit');
-        Route::post('update/{id}', 'Admin\PhotoController@update')->name('admin.photo.update');
-        Route::post('destroy/{id}', 'Admin\PhotoController@destroy')->name('admin.photo.destroy');
+    Route::get('/',         function () { return redirect('/admin/home'); });
+    Route::get('login',     'Admin\LoginController@showLoginForm')->name('admin.login');
+    Route::post('login',    'Admin\LoginController@login');
+});
 
-        Route::put('like/{id}', 'Admin\PhotoController@like')->name('admin.photo.like');
-        Route::delete('like/{id}', 'Admin\PhotoController@unlike')->name('admin.photo.unlike');
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
+    Route::post('logout',   'Admin\LoginController@logout')->name('admin.logout');
+    Route::get('home',      'Admin\HomeController@index')->name('admin.home');
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+
+
+    Route::prefix('photos')->name('photos.')->group(function () {
+        Route::get('index', 'Admin\PhotoController@index')->name('index');
+        Route::get('create', 'Admin\PhotoController@create')->name('create');
+        Route::post('store', 'Admin\PhotoController@store')->name('store');
+        Route::get('show/{photo}', 'Admin\PhotoController@show')->name('show');
+        Route::get('edit/{photo}', 'Admin\PhotoController@edit')->name('edit');
+        Route::post('update/{photo}', 'Admin\PhotoController@update')->name('update');
+        Route::post('destroy/{photo}', 'Admin\PhotoController@destroy')->name('destroy');
     });
 
-    Route::group(['prefix' => 'user'], function() {
-        Route::get('index', 'Admin\UserController@index')->name('admin.user.index');
-        Route::get('show/{id}', 'Admin\UserController@show')->name('admin.user.show');
-        Route::get('edit/{id}', 'Admin\UserController@edit')->name('admin.user.edit');
-        Route::post('update/{id}', 'Admin\UserController@update')->name('admin.user.update');
-        Route::post('destroy/{id}', 'Admin\UserController@destroy')->name('admin.user.destroy');
+    Route::prefix('users')->name('users.')->group(function () {
+        Route::get('index', 'Admin\UserController@index')->name('index');
+        Route::get('show/{user_id}', 'Admin\UserController@show')->name('show');
+        Route::get('edit/{user_id}', 'Admin\UserController@edit')->name('edit');
+        Route::post('update/{user_id}', 'Admin\UserController@update')->name('update');
+        Route::post('destroy/{user_id}', 'Admin\UserController@destroy')->name('destroy');
     });
 
-    Route::get('about/index', 'Admin\AboutController@index')->name('admin.about.index');
-
-    Route::group(['prefix' => 'contact'], function() {
-        Route::get('index', 'Admin\ContactController@index')->name('admin.contact.index');
-        Route::get('show/{id}', 'Admin\ContactController@show')->name('admin.contact.show');
-        Route::post('reply', 'Admin\ContactController@reply')->name('admin.contact.reply');
-        Route::post('confirm', 'Admin\ContactController@confirm')->name('admin.contact.confirm');
-        Route::post('complete', 'Admin\ContactController@complete')->name('admin.contact.complete');
+    Route::prefix('contacts')->name('contacts.')->group(function () {
+        Route::get('index', 'Admin\ContactController@index')->name('index');
+        Route::get('show/{id}', 'Admin\ContactController@show')->name('show');
+        Route::post('reply', 'Admin\ContactController@reply')->name('reply');
+        Route::post('confirm', 'Admin\ContactController@confirm')->name('confirm');
+        Route::post('complete', 'Admin\ContactController@complete')->name('complete');
     });
 });
 
