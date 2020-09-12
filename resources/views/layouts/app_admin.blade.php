@@ -19,7 +19,7 @@
 
 <body style="background-color: tomato">
   <div style="margin-bottom: 48px">
-    @yield('navbar')
+    @yield('navbar_admin')
   </div>
 
   <div id="app">
@@ -46,43 +46,6 @@
       });
     });
 
-  </script>
-  <script>
-    document.getElementById('file-sample').addEventListener('change', function (e) {
-      // 1枚だけ表示する
-      var file = e.target.files[0];
-      // ファイルリーダー作成
-      var fileReader = new FileReader();
-      fileReader.onload = function() {
-        // Data URIを取得
-        var dataUri = this.result;
-
-        // img要素に表示
-        var img = document.getElementById('file-preview');
-        img.src = dataUri;
-        img.style.display = "block";
-      }
-      // ファイルをData URIとして読み込む
-      fileReader.readAsDataURL(file);
-    });
-  </script>
-  <script>
-    document.getElementById('file-sample').addEventListener('change', function (e) {
-        // 1枚だけ表示する
-      var file = e.target.files[0];
-      // ファイルリーダー作成
-      var fileReader = new FileReader();
-      fileReader.onload = function() {
-        // Data URIを取得
-        var dataUri = this.result;
-
-        // img要素に表示
-        var img = document.getElementById('file-preview');
-        img.src = dataUri;
-      }
-      // ファイルをData URIとして読み込む
-      fileReader.readAsDataURL(file);
-    });
   </script>
 </body>
 
