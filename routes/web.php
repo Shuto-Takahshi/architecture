@@ -50,14 +50,14 @@ Route::group(['prefix' => 'contact'], function() {
 
 // 管理者
 Route::group(['prefix' => 'admin'], function() {
-    Route::get('/',         function () { return redirect('/admin/home'); });
-    Route::get('login',     'Admin\LoginController@showLoginForm')->name('admin.login');
-    Route::post('login',    'Admin\LoginController@login');
+    Route::get('/', function () { return redirect('/admin/home'); });
+    Route::get('login', 'Admin\LoginController@showLoginForm')->name('admin.login');
+    Route::post('login', 'Admin\LoginController@login');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
-    Route::post('logout',   'Admin\LoginController@logout')->name('admin.logout');
-    Route::get('home',      'Admin\HomeController@index')->name('admin.home');
+    Route::post('logout', 'Admin\LoginController@logout')->name('admin.logout');
+    Route::get('home', 'Admin\HomeController@index')->name('admin.home');
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
