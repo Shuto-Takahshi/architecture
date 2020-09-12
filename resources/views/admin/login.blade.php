@@ -10,7 +10,7 @@
 
                 <div class="card-body p-5">
                     <h2 class="text-center">ログイン</h2>
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('admin.login') }}">
                         @csrf
                         <div class="form-group">
                             <label for="email" class="">メールアドレス</label>
@@ -28,9 +28,6 @@
                             </button>
                         </div>
                     </form>
-                    <div class="mt-0 text-center">
-                        <a href="{{ route('register') }}" class="card-text">ユーザー登録はこちら</a>
-                    </div>
                 </div>
             </div>
         </div>
