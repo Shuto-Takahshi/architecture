@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Photo;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PhotoUpdateRequest;
 
 class PhotoController extends Controller
 {
@@ -14,8 +16,8 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
-        return view('admin.photo.index');
+        $photos = Photo::all()->sortByDesc('created_at');
+        return view('admin.photos.index', ['photos' => $photos]);
     }
 
     /**
@@ -25,8 +27,6 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        //
-        return view('admin.photo.create');
     }
 
     /**
@@ -35,10 +35,8 @@ class PhotoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
-        return redirect('admin/photo/index');
     }
 
     /**
@@ -47,10 +45,11 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+
+
+    public function show(Photo $photo)
     {
-        //
-        return view('admin.photo.show');
+        return view('admin.photos.show', ['photo' => $photo]);
     }
 
     /**
@@ -59,10 +58,9 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Photo $photo)
     {
-        //
-        return view('admin.photo.edit');
+        return view('admin.photos.edit', ['photo' => $photo]);
     }
 
     /**
@@ -72,10 +70,12 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PhotoUpdateRequest $request, Photo $photo)
     {
-        //
-        return redirect('admin/photo/show/{id}');
+        $photo->fill($request->all());
+        $photo->save();
+
+        return redirect()->route('admin.photos.index');
     }
 
     /**
@@ -84,9 +84,9 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Photo $photo)
     {
-        //
-        return redirect('profile/show/{id}');
+        $photo->delete();
+        return redirect()->route('admin.photos.index');
     }
 }
