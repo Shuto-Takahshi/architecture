@@ -18,11 +18,11 @@
 </head>
 
 <body style="background-color: tomato">
-  <div style="margin-bottom: 48px">
+  <div style="margin-bottom: 56px">
     @yield('navbar_admin')
   </div>
 
-  <div id="app">
+  <div id="app" class="pt-5">
     @yield('content')
   </div>
 
