@@ -12,7 +12,7 @@
                 <a class="nav-link" href="{{ route('admin.home') }}">Home <span class="sr-only">(current)</span></a>
             </li> --}}
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-user mr-1"></i>ユーザー</a>
+                <a class="nav-link" href="{{ route('admin.users.index') }}"><i class="fas fa-user mr-1"></i>ユーザー</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.photos.index')}}"><i class="fas fa-image mr-1"></i>写真</a>
