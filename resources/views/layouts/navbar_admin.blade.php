@@ -17,6 +17,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.photos.index')}}"><i class="fas fa-image mr-1"></i>写真</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="fas fa-sign-out-alt mr-1"></i>ログアウト
+                </a>
+                <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none">
+                    @csrf
+                </form>
+            </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

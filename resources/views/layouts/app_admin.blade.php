@@ -26,27 +26,8 @@
     @yield('content')
   </div>
 
-  @yield('footer')
-
   <script src="{{ mix('js/app.js') }}"></script>
-  <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-  <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 
-  <script>
-    window.addEventListener('DOMContentLoaded', (event) => {
-      var grid = $('.grid').masonry({
-        itemSelector: '.grid-item',
-        percentPosition: true,
-        columnWidth: '.grid-sizer'
-      });
-
-      // layout Masonry after each image loads
-      grid.imagesLoaded().progress( function() {
-        grid.masonry();
-      });
-    });
-
-  </script>
 </body>
 
 </html>
