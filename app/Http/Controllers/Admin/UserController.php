@@ -8,10 +8,22 @@ use App\User;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::orderBy('created_at', 'DESC')->paginate(5);
-        return view('admin.users.index', ['users' => $users]);
+        $keyword = $request->input('keyword');
+
+        if(!empty($keyword))
+        {
+            $users = User::where('name', 'like', '%'.$keyword.'%')
+                ->paginate(5);
+        } else {
+            $users = User::orderBy('created_at', 'DESC')->paginate(5);
+        }
+
+        return view('admin.users.index', [
+            'users' => $users,
+            'keyword' => $keyword
+        ]);
     }
 
     public function show(Request $request)

@@ -7,6 +7,7 @@ use App\Photo;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PhotoUpdateRequest;
 
+
 class PhotoController extends Controller
 {
     /**
@@ -14,11 +15,31 @@ class PhotoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $photos = Photo::all()->sortByDesc('created_at');
-        $photos = Photo::orderBy('created_at', 'DESC')->paginate(5);
-        return view('admin.photos.index', ['photos' => $photos]);
+        $keyword = $request->input('keyword');
+
+        if(!empty($keyword))
+        {
+            $photos = Photo::where('title', 'like', '%'.$keyword.'%')
+                ->orWhere('address', 'like', '%'.$keyword.'%')
+                ->orWhereHas('user', function ($query) use ($keyword){
+                    $query->where('name', 'like','%'.$keyword.'%');
+                })->paginate(5);
+
+            //リレーション関係
+            // $photos = Photo::whereHas('user', function ($query) use ($keyword){
+            //     $query->where('name', 'like','%'.$keyword.'%');
+            // })->paginate(5);
+
+        } else {
+            $photos = Photo::orderBy('created_at', 'DESC')->paginate(5);
+        }
+
+        return view('admin.photos.index', [
+            'photos' => $photos,
+            'keyword' => $keyword
+        ]);
     }
 
     /**
@@ -90,4 +111,30 @@ class PhotoController extends Controller
         $photo->delete();
         return redirect()->route('admin.photos.index');
     }
+
+    // public function search(Request $request)
+    // {
+    //     $keyword = $request->input('keyword');
+
+    //     if(!empty($keyword))
+    //     {
+    //         $photos = DB::table('photos')
+    //                 ->where('title', 'like', '%'.$keyword.'%')
+    //                 ->orWhere('address', 'like', '%'.$keyword.'%')
+    //                 ->paginate(5);
+
+    //         //リレーション関係
+    //         $photos = Photo::whereHas('users', function ($query) use ($keyword){
+    //             $query->where('name', 'like','%'.$keyword.'%');
+    //         })->paginate(5);
+
+    //     } else {//キーワードが入力されていない場合
+    //         $photos = DB::table('photos')->paginate(5);
+    //     }
+    //     //検索フォームへ
+    //     return view('admin.photos.index',[
+    //         'photos' => $photos,
+    //         'keyword' => $keyword,
+    //     ]);
+    // }
 }
