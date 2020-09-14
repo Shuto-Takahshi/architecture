@@ -5,6 +5,11 @@
 <div class="container">
     <div class="row">
         <div class="col">
+            <div class="bg-white p-2">
+                <form class="form-inline my-2 my-lg-0" action="{{ route('admin.photos.index') }}">
+                    @include('admin.search_form')
+                </form>
+            </div>
             @include('admin.photos.table')
         </div>
     </div>
