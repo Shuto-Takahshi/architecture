@@ -8,7 +8,7 @@
             <div class="col bg-white">
                     <div class="p-5">
                         @include('error_list')
-                        <form method="POST" action="{{ route('photos.update', ['photo' => $photo->id]) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('admin.photos.update', ['photo' => $photo->id]) }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <img class="photo-img" id="file-preview" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" style="width: 100%">
