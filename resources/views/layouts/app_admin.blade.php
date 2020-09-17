@@ -22,7 +22,7 @@
     @yield('navbar_admin')
   </div>
 
-  <div id="app" class="pt-5">
+  <div id="app" class="py-4">
     @yield('content')
   </div>
 
