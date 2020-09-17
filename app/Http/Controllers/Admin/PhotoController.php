@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Photo;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PhotoUpdateRequest;
+
 
 class PhotoController extends Controller
 {
@@ -12,10 +15,31 @@ class PhotoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        return view('admin.photo.index');
+        $keyword = $request->input('keyword');
+
+        if(!empty($keyword))
+        {
+            $photos = Photo::where('title', 'like', '%'.$keyword.'%')
+                ->orWhere('address', 'like', '%'.$keyword.'%')
+                ->orWhereHas('user', function ($query) use ($keyword){
+                    $query->where('name', 'like','%'.$keyword.'%');
+                })->paginate(5);
+
+            //リレーション関係
+            // $photos = Photo::whereHas('user', function ($query) use ($keyword){
+            //     $query->where('name', 'like','%'.$keyword.'%');
+            // })->paginate(5);
+
+        } else {
+            $photos = Photo::orderBy('created_at', 'DESC')->paginate(5);
+        }
+
+        return view('admin.photos.index', [
+            'photos' => $photos,
+            'keyword' => $keyword
+        ]);
     }
 
     /**
@@ -25,8 +49,6 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        //
-        return view('admin.photo.create');
     }
 
     /**
@@ -35,10 +57,8 @@ class PhotoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
-        return redirect('admin/photo/index');
     }
 
     /**
@@ -47,10 +67,11 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+
+
+    public function show(Photo $photo)
     {
-        //
-        return view('admin.photo.show');
+        return view('admin.photos.show', ['photo' => $photo]);
     }
 
     /**
@@ -59,10 +80,9 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Photo $photo)
     {
-        //
-        return view('admin.photo.edit');
+        return view('admin.photos.edit', ['photo' => $photo]);
     }
 
     /**
@@ -72,10 +92,12 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PhotoUpdateRequest $request, Photo $photo)
     {
-        //
-        return redirect('admin/photo/show/{id}');
+        $photo->fill($request->all());
+        $photo->save();
+
+        return redirect()->route('admin.photos.index');
     }
 
     /**
@@ -84,9 +106,35 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Photo $photo)
     {
-        //
-        return redirect('profile/show/{id}');
+        $photo->delete();
+        return redirect()->route('admin.photos.index');
     }
+
+    // public function search(Request $request)
+    // {
+    //     $keyword = $request->input('keyword');
+
+    //     if(!empty($keyword))
+    //     {
+    //         $photos = DB::table('photos')
+    //                 ->where('title', 'like', '%'.$keyword.'%')
+    //                 ->orWhere('address', 'like', '%'.$keyword.'%')
+    //                 ->paginate(5);
+
+    //         //リレーション関係
+    //         $photos = Photo::whereHas('users', function ($query) use ($keyword){
+    //             $query->where('name', 'like','%'.$keyword.'%');
+    //         })->paginate(5);
+
+    //     } else {//キーワードが入力されていない場合
+    //         $photos = DB::table('photos')->paginate(5);
+    //     }
+    //     //検索フォームへ
+    //     return view('admin.photos.index',[
+    //         'photos' => $photos,
+    //         'keyword' => $keyword,
+    //     ]);
+    // }
 }

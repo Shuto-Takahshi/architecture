@@ -63,10 +63,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
 Route::prefix('admin')->name('admin.')->group(function () {
 
 
+    // Route::resource('/photos', 'PhotoController')->middleware('auth')->except(['create','store']);
     Route::prefix('photos')->name('photos.')->group(function () {
         Route::get('index', 'Admin\PhotoController@index')->name('index');
-        Route::get('create', 'Admin\PhotoController@create')->name('create');
-        Route::post('store', 'Admin\PhotoController@store')->name('store');
         Route::get('show/{photo}', 'Admin\PhotoController@show')->name('show');
         Route::get('edit/{photo}', 'Admin\PhotoController@edit')->name('edit');
         Route::post('update/{photo}', 'Admin\PhotoController@update')->name('update');

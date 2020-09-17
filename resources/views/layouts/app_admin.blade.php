@@ -18,72 +18,16 @@
 </head>
 
 <body style="background-color: tomato">
-  <div style="margin-bottom: 48px">
-    @yield('navbar')
+  <div style="margin-bottom: 56px">
+    @yield('navbar_admin')
   </div>
 
-  <div id="app">
+  <div id="app" class="py-4">
     @yield('content')
   </div>
 
-  @yield('footer')
-
   <script src="{{ mix('js/app.js') }}"></script>
-  <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-  <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 
-  <script>
-    window.addEventListener('DOMContentLoaded', (event) => {
-      var grid = $('.grid').masonry({
-        itemSelector: '.grid-item',
-        percentPosition: true,
-        columnWidth: '.grid-sizer'
-      });
-
-      // layout Masonry after each image loads
-      grid.imagesLoaded().progress( function() {
-        grid.masonry();
-      });
-    });
-
-  </script>
-  <script>
-    document.getElementById('file-sample').addEventListener('change', function (e) {
-      // 1枚だけ表示する
-      var file = e.target.files[0];
-      // ファイルリーダー作成
-      var fileReader = new FileReader();
-      fileReader.onload = function() {
-        // Data URIを取得
-        var dataUri = this.result;
-
-        // img要素に表示
-        var img = document.getElementById('file-preview');
-        img.src = dataUri;
-        img.style.display = "block";
-      }
-      // ファイルをData URIとして読み込む
-      fileReader.readAsDataURL(file);
-    });
-  </script>
-  <script>
-    document.getElementById('file-sample').addEventListener('change', function (e) {
-        // 1枚だけ表示する
-      var file = e.target.files[0];
-      // ファイルリーダー作成
-      var fileReader = new FileReader();
-      fileReader.onload = function() {
-        // Data URIを取得
-        var dataUri = this.result;
-
-        // img要素に表示
-        var img = document.getElementById('file-preview');
-        img.src = dataUri;
-      }
-      // ファイルをData URIとして読み込む
-      fileReader.readAsDataURL(file);
-    });
-  </script>
 </body>
 
 </html>
