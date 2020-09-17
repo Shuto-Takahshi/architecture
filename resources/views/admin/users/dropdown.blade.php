@@ -6,7 +6,6 @@
     </a>
     <div class="dropdown-menu dropdown-menu-right">
         <a class="dropdown-item" href="{{ route("admin.users.edit", ['user_id' => $user->id ]) }}">
-        {{-- <a class="dropdown-item" href=""> --}}
             <i class="fas fa-pen mr-1"></i>ユーザーを更新する
         </a>
     <div class="dropdown-divider"></div>

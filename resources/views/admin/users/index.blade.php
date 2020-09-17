@@ -2,7 +2,6 @@
 @include('layouts.navbar_admin')
 
 @section('content')
-
 <div class="container">
     <div class="row">
         <div class="col">
@@ -11,12 +10,11 @@
                     @include('admin.search_form')
                 </form>
             </div>
-
             @include('admin.users.table')
         </div>
     </div>
 </div>
-<div class="d-flex justify-content-center mt-5">
+<div class="d-flex justify-content-center mt-4">
     {{ $users->links() }}
 </div>
 @endsection

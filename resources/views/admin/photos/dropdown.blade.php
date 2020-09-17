@@ -1,7 +1,7 @@
-<div class="dropdown ml-auto">
+<div class="dropdown ml-auto my-auto">
     <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <button type="button" class="btn btn-link text-muted my-auto p-0">
-            <i class="fas fa-ellipsis-v"></i>
+        <button type="button" class="btn btn-link text-muted  p-0">
+            <i class="fas fa-ellipsis-h"></i>
         </button>
     </a>
     <div class="dropdown-menu dropdown-menu-right">

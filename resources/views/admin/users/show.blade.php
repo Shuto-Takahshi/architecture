@@ -3,10 +3,11 @@
 
 @section('content')
 <div class="profile-show">
-    <div class="container pt-4 bg-white">
+    <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col pt-4 bg-white">
                 @include('admin.users.user')
+                {{-- @include('admin.photos.table') --}}
             </div>
         </div>
     </div>
