@@ -14,10 +14,26 @@ class PhotoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $photos = Photo::all()->sortByDesc('created_at');
-        return view('photos.index', ['photos' => $photos]);
+        $keyword = $request->input('keyword');
+
+        if(!empty($keyword))
+        {
+            $photos = Photo::where('title', 'like', '%'.$keyword.'%')
+                ->orWhere('address', 'like', '%'.$keyword.'%')
+                ->orWhereHas('user', function ($query) use ($keyword){
+                    $query->where('name', 'like','%'.$keyword.'%');
+                })->paginate(10);
+
+        } else {
+            $photos = Photo::orderBy('created_at', 'DESC')->paginate(10);
+        }
+
+        return view('photos.index', [
+            'photos' => $photos,
+            'keyword' => $keyword
+        ]);
     }
 
     /**

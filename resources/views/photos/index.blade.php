@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@include('layouts.navbar')
+@include('layouts.navbar', ['keyword' => $keyword])
 
 @section('content')
 

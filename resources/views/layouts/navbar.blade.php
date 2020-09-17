@@ -6,11 +6,11 @@
     </div>
 
     {{-- form --}}
-    <form class="form-inline bg-white" id="search-input" method="GET">
+    <form class="form-inline bg-white" id="search-input" method="GET" action="{{ route('photos.index') }}">
         @csrf
         <div class="border d-flex">
             <button class="btn" type="button" onclick="clickBtn()"><i class="fas fa-times"></i></button>
-            <input class="form-control shadow-none my-auto mr-4" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control shadow-none my-auto mr-4" name="keyword" value="{{ $keyword ?? '' }}" type="search" placeholder="Search" aria-label="Search">
         </div>
     </form>
 

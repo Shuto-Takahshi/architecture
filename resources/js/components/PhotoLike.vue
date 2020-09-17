@@ -1,18 +1,16 @@
 <template>
     <div>
-        <button type="button" class="btn m-0 p-0 shadow-none">
+        <button type="button" class="btn p-0 p-0 shadow-none">
             <i class="fas fa-heart mr-1"
                 :class="{'text-danger':this.isLikedBy}"
                 @click="clickLike"
             />
+            {{ countLikes }}
         </button>
-        {{ countLikes }}
     </div>
 </template>
 
 <script>
-    // import axios from 'axios';
-
     export default {
         props: {
             initialIsLikedBy: {
