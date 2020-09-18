@@ -18,7 +18,8 @@
                 </div>
                 <img class="photo-img" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image">
                 <div class="p-2">
-                    <div class="mb-2 my-auto">
+                    <div class="mb-2 my-auto border-bottom">
+                        <div class="text-break photo-title">{{ $photo->title }}</div>
                         <photo-like
                             :initial-is-liked-by='@json($photo->isLikedBy(Auth::user()))'
                             :initial-count-likes='@json($photo->count_likes)'
@@ -27,11 +28,10 @@
                         >
                         </photo-like>
                     </div>
-                    <div class="mb-2">
-                        <p class="mb-0 photo-title">{{ $photo->title }}</p>
+                    <div class="mb-1">
                     </div>
                     <div class="mb-2">
-                        <p class="font-weight-light mb-0 photo-content">{{ $photo->body }}</p>
+                        <div class="text-break">{{ $photo->body }}</div>
                     </div>
                     <div class="">
                         <i class="fas fa-map-marker-alt mr-2"></i>{{ $photo->address }}

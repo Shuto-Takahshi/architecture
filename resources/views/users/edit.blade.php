@@ -1,16 +1,13 @@
 @extends('layouts.app')
 @include('layouts.navbar')
 
-
 @section('content')
-<div class="profile-edit py-md-5">
-    <div class="container bg-white p-5">
+<div class="profile-edit">
+    <div class="container py-4">
         <div class="row mx-auto">
-            <div class="col">
-
+            <div class="col bg-white p-md-5 p-4">
                 @include('error_list')
-
-                <form method="POST" action="{{ route('users.update')}}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('users.update') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="file-sample" class="mb-0">
