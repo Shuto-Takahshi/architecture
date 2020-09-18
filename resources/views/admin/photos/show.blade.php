@@ -15,25 +15,23 @@
                 </div>
                 <img class="photo-img" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image">
                 <div class="p-2">
-                    <div class="mb-2 border-bottom">
-                        <div class="photo-title">{{ $photo->title }}</div>
-                        <div class="d-flex">
-                            <photo-like
-                                class=""
-                                :initial-is-liked-by='@json($photo->isLikedBy(Auth::user()))'
-                                :initial-count-likes='@json($photo->count_likes)'
-                                :authorized='@json(Auth::check())'
-                                endpoint="{{ route('photos.like', ['photo' => $photo]) }}"
-                            >
-                            </photo-like>
-                            <div class="text-muted my-auto ml-auto" style="font-size: 12px">{{ $photo->created_at->format('Y/m/d') }}</div>
-                        </div>
+                    <div class="mb-2 my-auto border-bottom">
+                        <div class="text-break photo-title">{{ $photo->title }}</div>
+                        <photo-like
+                            :initial-is-liked-by='@json($photo->isLikedBy(Auth::user()))'
+                            :initial-count-likes='@json($photo->count_likes)'
+                            :authorized='@json(Auth::check())'
+                            endpoint="{{ route('photos.like', ['photo' => $photo]) }}"
+                        >
+                        </photo-like>
+                    </div>
+                    <div class="mb-1">
                     </div>
                     <div class="mb-2">
-                        <div class="font-weight-light">{{ $photo->body }}</div>
+                        <div class="text-break">{{ $photo->body }}</div>
                     </div>
                     <div class="">
-                        <i class="fas fa-map-marker-alt mr-1"></i>{{ $photo->address }}
+                        <i class="fas fa-map-marker-alt mr-2"></i>{{ $photo->address }}
                     </div>
                 </div>
             </div>

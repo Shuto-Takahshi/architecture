@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="profile-show">
-    <div class="container">
+    <div class="container py-4">
         <div class="row">
             <div class="col pt-4 bg-white">
                 @include('admin.users.user')
