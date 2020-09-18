@@ -17,7 +17,20 @@ class UserController extends Controller
     {
         $user = User::where('id', $request->user_id)->first();
         $photos = $user->photos->sortByDesc('created_at');
-        return view('users.show', ['user' => $user, 'photos' => $photos]);
+        return view('users.show', [
+            'user' => $user,
+            'photos' => $photos,
+        ]);
+    }
+
+    public function likes(Request $request)
+    {
+        $user = User::where('id', $request->user_id)->first();
+        $photos = $user->likes->sortByDesc('created_at');
+        return view('users.likes', [
+            'user' => $user,
+            'photos' => $photos,
+        ]);
     }
 
     public function mypage(Request $request)
