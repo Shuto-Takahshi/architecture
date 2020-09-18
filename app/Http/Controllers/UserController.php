@@ -23,22 +23,28 @@ class UserController extends Controller
         ]);
     }
 
+    public function mypage(Request $request)
+    {
+        $user = Auth::user();
+        $photos = $user->photos->sortByDesc('created_at');
+
+        return view('users.mypage',[
+            'user' => $user,
+            'photos' => $photos,
+        ]);
+    }
+
     public function likes(Request $request)
     {
         $user = User::where('id', $request->user_id)->first();
         $photos = $user->likes->sortByDesc('created_at');
+
         return view('users.likes', [
             'user' => $user,
             'photos' => $photos,
         ]);
     }
 
-    public function mypage(Request $request)
-    {
-        $user = Auth::user();
-        $photos = $user->photos->sortByDesc('created_at');
-        return view('users.mypage', ['user' => $user, 'photos' => $photos]);
-    }
 
     public function edit()
     {
@@ -59,7 +65,7 @@ class UserController extends Controller
         $user->body = $request->body;
         $user->save();
 
-        return redirect()->route('users.mypage');
+        return redirect()->route('users.show');
     }
 
     public function follow(Request $request)

@@ -33,8 +33,8 @@ Route::prefix('photos')->name('photos.')->group(function () {
 
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('show/{user_id}', 'UserController@show')->name('show');
-    Route::get('{user_id}/likes', 'UserController@likes')->name('likes');
     Route::get('mypage', 'UserController@mypage')->name('mypage')->middleware('auth');
+    Route::get('{user_id}/likes', 'UserController@likes')->name('likes');
     Route::get('edit', 'UserController@edit')->name('edit')->middleware('auth');
     Route::post('update', 'UserController@update')->name('update')->middleware('auth');
     Route::middleware('auth')->group(function () {
