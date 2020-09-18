@@ -2,7 +2,7 @@
 @include('layouts.navbar_admin')
 
 @section('content')
-<div class="container">
+<div class="container py-4">
     <div class="row">
         <div class="col">
             <div class="bg-white p-2">
