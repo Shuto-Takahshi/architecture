@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Photo;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -16,7 +17,11 @@ class UserController extends Controller
     public function show(Request $request)
     {
         $user = User::where('id', $request->user_id)->first();
-        $photos = $user->photos->sortByDesc('created_at');
+        // $photos = $user->photos->sortByDesc('created_at');
+        $photos = Photo::where('user_id', $user->id)
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10);
+
         return view('users.show', [
             'user' => $user,
             'photos' => $photos,
@@ -37,7 +42,12 @@ class UserController extends Controller
     public function likes(Request $request)
     {
         $user = User::where('id', $request->user_id)->first();
-        $photos = $user->likes->sortByDesc('created_at');
+        // $photos = $user->likes->sortByDesc('created_at');
+        $photos = Photo::select('photos.*')
+            ->join('likes', 'likes.photo_id', '=', 'photos.id')
+            ->where('likes.user_id', '=', $user->id)
+            ->orderBy('photos.created_at', 'DESC')
+            ->paginate(10);
 
         return view('users.likes', [
             'user' => $user,

@@ -31,6 +31,7 @@
   <script src="{{ mix('js/app.js') }}"></script>
   <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
   <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+  <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
 
   <script>
     window.addEventListener('DOMContentLoaded', (event) => {
@@ -39,14 +40,24 @@
         percentPosition: true,
         columnWidth: '.grid-sizer'
       });
-
       // layout Masonry after each image loads
       grid.imagesLoaded().progress( function() {
-        grid.masonry();
+        grid.masonry('layout');
+      });
+      // get Masonry instance
+      var msnry = grid.data('masonry');
+      // init Infinite Scroll
+      grid.infiniteScroll({
+        path : "?page=@{{#}}",
+        append: '.grid-item',
+        outlayer: msnry,
+        history: false,
+        status: '.page-load-status',
       });
     });
 
   </script>
+
   <script>
     document.getElementById('file-sample').addEventListener('change', function (e) {
       // 1枚だけ表示する

@@ -14,8 +14,7 @@ class UserController extends Controller
 
         if(!empty($keyword))
         {
-            $users = User::where('name', 'like', '%'.$keyword.'%')
-                ->paginate(5);
+            $users = User::where('name', 'like', '%'.$keyword.'%')->paginate(5);
         } else {
             $users = User::orderBy('created_at', 'DESC')->paginate(5);
         }
