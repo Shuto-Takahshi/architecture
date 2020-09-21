@@ -7,9 +7,9 @@
     <div class="row">
         <div class="col-md-6 mx-auto py-5">
             <div class="card">
-
                 <div class="card-body p-5">
                     <h2 class="text-center">ログイン</h2>
+                    @include('error_list')
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group">
@@ -28,13 +28,13 @@
                         </div>
 
                         <div class="form-group mb-0 text-center">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary w-100">
                                 ログイン
                             </button>
                         </div>
                     </form>
                     <div class="mt-0 text-center">
-                        <a href="{{ route('register') }}" class="card-text">ユーザー登録はこちら</a>
+                        <a href="{{ route('register') }}" class="card-text text-dark">ユーザー登録はこちら</a>
                     </div>
                 </div>
             </div>

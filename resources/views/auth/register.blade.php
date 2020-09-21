@@ -8,6 +8,7 @@
             <div class="card">
                 <div class="card-body p-5">
                     <h2 class="text-center">新規登録</h2>
+                    @include('error_list')
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="form-group">
@@ -49,13 +50,13 @@
                         </div>
 
                         <div class="form-group mb-0 text-center">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary w-100">
                                 登録する
                             </button>
                         </div>
                     </form>
                     <div class="mt-0 text-center">
-                        <a href="{{ route('register') }}" class="card-text">ログインはこちら</a>
+                        <a href="{{ route('login') }}" class="card-text text-dark">ログインはこちら</a>
                     </div>
                 </div>
             </div>
