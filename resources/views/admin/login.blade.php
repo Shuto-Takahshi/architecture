@@ -7,9 +7,9 @@
     <div class="row">
         <div class="col-md-6 mx-auto py-5">
             <div class="card">
-
                 <div class="card-body p-5">
                     <h2 class="text-center">ログイン</h2>
+                    @include('error_list')
                     <form method="POST" action="{{ route('admin.login') }}">
                         @csrf
                         <div class="form-group">
