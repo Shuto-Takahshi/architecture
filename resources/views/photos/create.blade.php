@@ -6,7 +6,7 @@
     <div class="container py-4">
         <div class="row mx-auto">
             <div class="col bg-white p-md-5 p-4">
-                    @include('error_list')
+                @include('error_list')
                 <form method="POST" action="{{ route('photos.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">

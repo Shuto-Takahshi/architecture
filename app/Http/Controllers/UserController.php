@@ -31,7 +31,11 @@ class UserController extends Controller
     public function mypage(Request $request)
     {
         $user = Auth::user();
-        $photos = $user->photos->sortByDesc('created_at');
+        // $photos = $user->photos->sortByDesc('created_at');
+        $photos = Photo::where('user_id', $user->id)
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10);
+
 
         return view('users.mypage',[
             'user' => $user,

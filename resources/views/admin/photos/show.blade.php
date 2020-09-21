@@ -15,7 +15,7 @@
                 </div>
                 <img class="photo-img" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image">
                 <div class="p-2">
-                    <div class="mb-2 my-auto border-bottom">
+                    <div class="mb-2 my-auto">
                         <div class="text-break photo-title">{{ $photo->title }}</div>
                         <photo-like
                             :initial-is-liked-by='@json($photo->isLikedBy(Auth::user()))'
