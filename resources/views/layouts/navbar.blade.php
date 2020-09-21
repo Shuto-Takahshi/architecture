@@ -1,4 +1,12 @@
 @section('navbar')
+<style>
+    @keyframes onAutoFillStart { from {} to {}}
+
+    input:-webkit-autofill {
+        animation-name: onAutoFillStart;
+        transition: background-color 50000s ease-in-out 0s;
+    }
+</style>
 
 <nav class="navbar navbar-expand navbar-light py-1 bg-white fixed-top px-md-4">
     <div class="navbar-brand home">
@@ -6,24 +14,25 @@
     </div>
 
     {{-- form --}}
-    <form class="form-inline bg-white" id="search-input" method="GET" action="{{ route('photos.index') }}">
+    {{-- <form class="form-inline bg-white" id="search-input" method="GET" action="{{ route('photos.index') }}">
         @csrf
         <div class="border d-flex">
             <button class="btn" type="button" onclick="clickBtn()"><i class="fas fa-times"></i></button>
-            <input class="form-control shadow-none my-auto mr-4" name="keyword" value="{{ $keyword ?? '' }}" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control shadow-none my-auto mr-4" name="keyword" value="{{ $keyword ?? '' }}" type="search" placeholder="検索" aria-label="Search">
         </div>
-    </form>
-
-    {{-- <form class="form-row" style="width: 100%">
-        <input class="form-control shadow-none my-auto" type="search" placeholder="Search" aria-label="Search" style="width: inherit">
     </form> --}}
 
+    <form class="form-inline border rounded-sm">
+        @csrf
+        <i class="fas fa-search text-muted ml-2"></i>
+        <input class="form-control shadow-none border-0 py-0" name="keyword" value="{{ $keyword ?? '' }}" type="search" placeholder="検索" aria-label="Search">
+    </form>
     <ul class="navbar-nav ml-auto" style="z-index: -1">
-        <li class="nav-item search-btn">
+        {{-- <li class="nav-item search-btn">
             <button class="btn p-0 mr-2" type="button" onclick="clickBtn()">
                 <i class="fas fa-search my-auto text-muted"></i>
             </button>
-        </li>
+        </li> --}}
 
         @guest
         <li class="nav-item mr-2 my-auto nav-btn">
@@ -33,13 +42,13 @@
         @endguest
 
         @auth
-        <li class="nav-item mr-2">
+        <li class="nav-item mr-2 my-auto">
             <div class="dropdown">
                 <button class="btn shadow-none p-0 mr-2 dropdown-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     @if (Auth::check() && isset(Auth::user()->image_path))
-                    <img class="user-img border" src="{{ asset('storage/user_images/' . Auth::user()->image_path) }}"/>
+                        <img class="user-img border" src="{{ asset('storage/user_images/' . Auth::user()->image_path) }}"/>
                     @else
-                    <img class="user-img border" src="{{ asset('/images/default_user_image.png') }}" alt="image">
+                        <img class="user-img border" src="{{ asset('/images/default_user_image.png') }}" alt="image">
                     @endif
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -60,16 +69,16 @@
 
         <li class="nav-item">
             <div class="dropdown">
-                <button class="btn shadow-none p-0 m-0 text-center dropdown-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn shadow-none px-0 dropdown-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-chevron-down"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li class="p-2">
                         <a class="" href="#">サイトについて</a>
                     </li>
-                    <li class="p-2">
-                    <a class="" href="{{ route('contact.index') }}">お問い合わせ</a>
-                    </li>
+                    {{-- <li class="p-2">
+                        <a class="" href="{{ route('contact.index') }}">お問い合わせ</a>
+                    </li> --}}
                     <li class="p-2">
                         <a class="" href="#">利用規約</a>
                     </li>
@@ -77,7 +86,7 @@
                         <a class="" href="#">プライバシーポリシー</a>
                     </li>
                     <li class="p-2">
-                        <p class="m-0" style="font-size: 12px">© 2020 ArchiGallery</p>
+                        <div class="m-0" style="font-size: 12px">© 2020 ArchiGallery</div>
                     </li>
                 </ul>
             </div>

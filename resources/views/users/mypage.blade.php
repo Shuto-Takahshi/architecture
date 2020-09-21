@@ -23,13 +23,11 @@
                 </div>
             </div>
         </div>
-
     </div>
     <div class="tab-content">
         <div class="tab-pane fade show active" id="photos" role="tabpanel" aria-labelledby="photos-tab">
             @include('photos.grid')
         </div>
-        <div class="tab-pane fade" id="likes" role="tabpanel" aria-labelledby="likes-tab">This is a text of item#2.</div>
     </div>
 </div>
 @endsection
