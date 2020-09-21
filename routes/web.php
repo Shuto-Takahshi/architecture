@@ -11,10 +11,6 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Auth::routes();
 // 一般ユーザー
 Route::prefix('photos')->name('photos.')->group(function () {
@@ -32,7 +28,7 @@ Route::prefix('photos')->name('photos.')->group(function () {
 // Route::resource('/photos', 'PhotoController')->except(['index','show'])->middleware('auth');
 
 Route::prefix('users')->name('users.')->group(function () {
-    Route::get('show/{user_id}', 'UserController@show')->name('show');
+    Route::get('{user_id}', 'UserController@show')->name('show');
     Route::get('mypage', 'UserController@mypage')->name('mypage')->middleware('auth');
     Route::get('{user_id}/likes', 'UserController@likes')->name('likes');
     Route::get('edit', 'UserController@edit')->name('edit')->middleware('auth');
@@ -43,11 +39,11 @@ Route::prefix('users')->name('users.')->group(function () {
     });
 });
 
-Route::group(['prefix' => 'contact'], function() {
-    Route::get('index', 'ContactController@index')->name('contact.index');
-    Route::post('confirm', 'ContactController@confirm')->name('contact.confirm');
-    Route::post('complete', 'ContactController@complete')->name('contact.complete');
-});
+// Route::group(['prefix' => 'contact'], function() {
+//     Route::get('index', 'ContactController@index')->name('contact.index');
+//     Route::post('confirm', 'ContactController@confirm')->name('contact.confirm');
+//     Route::post('complete', 'ContactController@complete')->name('contact.complete');
+// });
 
 // 管理者
 Route::group(['prefix' => 'admin'], function() {
@@ -81,13 +77,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('destroy/{user_id}', 'Admin\UserController@destroy')->name('destroy');
     });
 
-    Route::prefix('contacts')->name('contacts.')->group(function () {
-        Route::get('index', 'Admin\ContactController@index')->name('index');
-        Route::get('show/{id}', 'Admin\ContactController@show')->name('show');
-        Route::post('reply', 'Admin\ContactController@reply')->name('reply');
-        Route::post('confirm', 'Admin\ContactController@confirm')->name('confirm');
-        Route::post('complete', 'Admin\ContactController@complete')->name('complete');
-    });
+    // Route::prefix('contacts')->name('contacts.')->group(function () {
+    //     Route::get('index', 'Admin\ContactController@index')->name('index');
+    //     Route::get('show/{id}', 'Admin\ContactController@show')->name('show');
+    //     Route::post('reply', 'Admin\ContactController@reply')->name('reply');
+    //     Route::post('confirm', 'Admin\ContactController@confirm')->name('confirm');
+    //     Route::post('complete', 'Admin\ContactController@complete')->name('complete');
+    // });
 });
 
 
