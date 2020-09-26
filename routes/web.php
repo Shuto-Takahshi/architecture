@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('mails/send', 'SampleController@send');
+
 Auth::routes();
 // 一般ユーザー
 Route::prefix('photos')->name('photos.')->group(function () {
@@ -28,7 +30,7 @@ Route::prefix('photos')->name('photos.')->group(function () {
 // Route::resource('/photos', 'PhotoController')->except(['index','show'])->middleware('auth');
 
 Route::prefix('users')->name('users.')->group(function () {
-    Route::get('{user_id}', 'UserController@show')->name('show');
+    Route::get('show/{user_id}', 'UserController@show')->name('show');
     Route::get('mypage', 'UserController@mypage')->name('mypage')->middleware('auth');
     Route::get('{user_id}/likes', 'UserController@likes')->name('likes');
     Route::get('edit', 'UserController@edit')->name('edit')->middleware('auth');
