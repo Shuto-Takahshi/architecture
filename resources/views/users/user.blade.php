@@ -10,13 +10,15 @@
                     <div class="profile-btn">
                         @if(Auth::id() !== $user->id)
                             <follow-button class="ml-auto"
-                            :initial-is-followed-by='@json($user->isFollowedBy(Auth::user()))'
-                            :authorized='@json(Auth::check())'
-                            endpoint="{{ route('users.follow', ['user' => $user]) }}"
+                                :initial-is-followed-by='@json($user->isFollowedBy(Auth::user()))'
+                                :authorized='@json(Auth::check())'
+                                endpoint="{{ route('users.follow', ['user' => $user]) }}"
                             >
                             </follow-button>
                         @elseif(Auth::id() == $user->id)
-                            <a class="btn border my-auto ml-auto" href="{{ route('users.edit') }}"><i class="fas fa-cog mr-1"></i>設定</a>
+                            <a class="btn border my-auto ml-auto" href="{{ route('users.edit', ['user_id' => $user->id]) }}">
+                                <i class="fas fa-cog mr-1"></i>設定
+                            </a>
                         @endif
                     </div>
                     <p class=" mb-2">{{ $user->body }}</p>
