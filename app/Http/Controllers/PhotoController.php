@@ -24,7 +24,8 @@ class PhotoController extends Controller
                 ->orWhere('address', 'like', '%'.$keyword.'%')
                 ->orWhereHas('user', function ($query) use ($keyword){
                     $query->where('name', 'like','%'.$keyword.'%');
-                })->paginate(10);
+                })
+                ->paginate(10);
 
         } else {
             $photos = Photo::orderBy('created_at', 'DESC')->paginate(10);

@@ -9,15 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
     public function show(Request $request)
     {
         $user = User::where('id', $request->user_id)->first();
-        // $photos = $user->photos->sortByDesc('created_at');
         $photos = Photo::where('user_id', $user->id)
             ->orderBy('created_at', 'DESC')
             ->paginate(10);
@@ -28,25 +22,9 @@ class UserController extends Controller
         ]);
     }
 
-    public function mypage(Request $request)
-    {
-        $user = Auth::user();
-        // $photos = $user->photos->sortByDesc('created_at');
-        $photos = Photo::where('user_id', $user->id)
-            ->orderBy('created_at', 'DESC')
-            ->paginate(10);
-
-
-        return view('users.mypage',[
-            'user' => $user,
-            'photos' => $photos,
-        ]);
-    }
-
     public function likes(Request $request)
     {
         $user = User::where('id', $request->user_id)->first();
-        // $photos = $user->likes->sortByDesc('created_at');
         $photos = Photo::select('photos.*')
             ->join('likes', 'likes.photo_id', '=', 'photos.id')
             ->where('likes.user_id', '=', $user->id)
@@ -79,7 +57,7 @@ class UserController extends Controller
         $user->body = $request->body;
         $user->save();
 
-        return redirect()->route('users.show');
+        return redirect()->route('users.show', ['user' => $user]);
     }
 
     public function follow(Request $request)

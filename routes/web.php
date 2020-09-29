@@ -30,12 +30,11 @@ Route::prefix('photos')->name('photos.')->group(function () {
 // Route::resource('/photos', 'PhotoController')->except(['index','show'])->middleware('auth');
 
 Route::prefix('users')->name('users.')->group(function () {
-    Route::get('show/{user_id}', 'UserController@show')->name('show');
-    Route::get('mypage', 'UserController@mypage')->name('mypage')->middleware('auth');
+    Route::get('{user_id}', 'UserController@show')->name('show');
     Route::get('{user_id}/likes', 'UserController@likes')->name('likes');
-    Route::get('edit', 'UserController@edit')->name('edit')->middleware('auth');
-    Route::post('update', 'UserController@update')->name('update')->middleware('auth');
     Route::middleware('auth')->group(function () {
+        Route::get('{user_id}/edit', 'UserController@edit')->name('edit');
+        Route::post('{user_id}/update', 'UserController@update')->name('update');
         Route::put('{user_id}/follow', 'UserController@follow')->name('follow');
         Route::delete('{user_id}/follow', 'UserController@unfollow')->name('unfollow');
     });

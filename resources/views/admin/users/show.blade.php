@@ -7,7 +7,6 @@
         <div class="row">
             <div class="col pt-4 bg-white">
                 @include('admin.users.user')
-                {{-- @include('admin.photos.table') --}}
             </div>
         </div>
     </div>

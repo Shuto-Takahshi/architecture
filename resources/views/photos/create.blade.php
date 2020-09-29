@@ -23,7 +23,7 @@
                         <textarea class="form-control" name="body" rows="3" placeholder="スポットにまつわるストーリーを入力">{{ old('body') }}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="address">撮影場所</label>
+                        <label for="address">住所</label>
                         <input class="form-control" type="text" name="address" value="{{ old('address') }}" placeholder="住所" aria-label="address">
                     </div>
                     <div class="form-group mb-0">
@@ -34,4 +34,5 @@
         </div>
     </div>
 </div>
+
 @endsection

@@ -7,7 +7,7 @@
         <div class="row mx-auto">
             <div class="col bg-white p-md-5 p-4">
                 @include('error_list')
-                <form method="POST" action="{{ route('users.update') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('users.update', ['user_id' => $user->id]) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="file-sample" class="mb-0">
