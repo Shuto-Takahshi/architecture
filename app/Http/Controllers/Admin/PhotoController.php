@@ -27,11 +27,6 @@ class PhotoController extends Controller
                     $query->where('name', 'like','%'.$keyword.'%');
                 })->paginate(10);
 
-            //リレーション関係
-            // $photos = Photo::whereHas('user', function ($query) use ($keyword){
-            //     $query->where('name', 'like','%'.$keyword.'%');
-            // })->paginate(5);
-
         } else {
             $photos = Photo::orderBy('created_at', 'DESC')->paginate(10);
         }
