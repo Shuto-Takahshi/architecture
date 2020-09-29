@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="photo-show">
-    <div class="container">
+    <div class="container py-md-4">
         <div class="row">
             <div class="col p-0 mx-auto bg-white">
                 <div class="d-flex p-2">
@@ -16,10 +16,11 @@
                         @include('photos.dropdown')
                     @endif
                 </div>
+                {{-- <div class="photo-flame text-center"> --}}
                 <img class="photo-img" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image">
+                {{-- </div> --}}
                 <div class="p-2">
-                    <div class="mb-2 my-auto">
-                        <div class="text-break photo-title">{{ $photo->title }}</div>
+                    <div class="d-flex">
                         <photo-like
                             :initial-is-liked-by='@json($photo->isLikedBy(Auth::user()))'
                             :initial-count-likes='@json($photo->count_likes)'
@@ -27,15 +28,13 @@
                             endpoint="{{ route('photos.like', ['photo' => $photo]) }}"
                         >
                         </photo-like>
-                    </div>
-                    <div class="mb-1">
-                    </div>
-                    <div class="mb-2">
-                        <div class="text-break">{{ $photo->body }}</div>
+                        <div class="text-break ml-auto">{{ $photo->created_at->format('Y/m/d') }}</div>
                     </div>
                     <div class="">
-                        <i class="fas fa-map-marker-alt mr-2"></i>{{ $photo->address }}
+                        <div class="text-break photo-title">{{ $photo->title }}</div>
+                        <div class="text-break mb-2" style="font-size: 14px">{{ $photo->body }}</div>
                     </div>
+                    <i class="fas fa-map-marker-alt mr-2"></i>{{ $photo->address }}
                 </div>
             </div>
         </div>

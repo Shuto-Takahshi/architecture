@@ -21,7 +21,7 @@
                         <textarea class="form-control" name="body" rows="3">{{ old('body', $photo->body) }}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="address">撮影場所</label>
+                        <label for="address">住所</label>
                         <input class="form-control" type="text" name="address" value="{{ old('address', $photo->address) }}" aria-label="address">
                     </div>
                     <div class="form-group mb-0">
