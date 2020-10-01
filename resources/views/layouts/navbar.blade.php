@@ -76,9 +76,6 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li class="p-2">
-                                    <a class="" href="#">サイトについて</a>
-                                </li>
-                                <li class="p-2">
                                     <a class="" href="#">利用規約</a>
                                 </li>
                                 <li class="p-2">
