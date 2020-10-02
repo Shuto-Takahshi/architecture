@@ -1,6 +1,6 @@
 <div class="dropdown ml-auto">
     <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <button type="button" class="btn btn-link text-muted my-auto p-0">
+        <button type="button" class="btn btn-link text-muted my-auto p-0 shadow-none">
             <i class="fas fa-ellipsis-h"></i>
         </button>
     </a>
