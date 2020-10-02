@@ -1,9 +1,8 @@
 <template>
     <div>
-        <button type="button" class="btn p-0 p-0 shadow-none">
+        <button type="button" @click="clickLike" class="btn shadow-none border py-1 mr-2">
             <i class="fas fa-heart mr-1"
                 :class="{'text-danger':this.isLikedBy}"
-                @click="clickLike"
             />
             {{ countLikes }}
         </button>

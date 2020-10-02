@@ -16,11 +16,9 @@
                         @include('photos.dropdown')
                     @endif
                 </div>
-                {{-- <div class="photo-flame text-center"> --}}
-                <img class="photo-img" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image">
-                {{-- </div> --}}
+                <img class="photo-img mb-2" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image">
                 <div class="p-2">
-                    <div class="d-flex">
+                    <div class="d-flex mb-2">
                         <photo-like
                             :initial-is-liked-by='@json($photo->isLikedBy(Auth::user()))'
                             :initial-count-likes='@json($photo->count_likes)'
@@ -28,17 +26,25 @@
                             endpoint="{{ route('photos.like', ['photo' => $photo]) }}"
                         >
                         </photo-like>
-                        <div class="text-break ml-auto">{{ $photo->created_at->format('Y/m/d') }}</div>
+                        @include('photos.map')
+                        <div class="text-break ml-auto my-auto">{{ $photo->created_at->format('Y/m/d') }}</div>
                     </div>
-                    <div class="">
+                    <div class="mb-2 border-bottom">
                         <div class="text-break photo-title">{{ $photo->title }}</div>
-                        <div class="text-break mb-2" style="font-size: 14px">{{ $photo->body }}</div>
+                        <div class="d-flex text-muted">
+                            <i class="fas fa-map-marker-alt mr-1 my-auto"></i>
+                            <div class="text-break" style="font-size: 14px">
+                                {{ $photo->address }}
+                            </div>
+                        </div>
                     </div>
-                    <i class="fas fa-map-marker-alt mr-2"></i>{{ $photo->address }}
+                    <div class="px-3">
+                        <div class="text-break" style="font-size: 14px">{{ $photo->body }}</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 @endsection
+
