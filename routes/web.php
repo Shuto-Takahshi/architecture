@@ -19,7 +19,7 @@ Route::prefix('photos')->name('photos.')->group(function () {
     Route::get('index', 'PhotoController@index')->name('index');
     Route::get('create', 'PhotoController@create')->name('create')->middleware('auth');
     Route::post('store', 'PhotoController@store')->name('store')->middleware('auth');
-    Route::get('show/{photo}', 'PhotoController@show')->name('show');
+    Route::get('/{photo}', 'PhotoController@show')->name('show');
     Route::get('edit/{photo}', 'PhotoController@edit')->name('edit')->middleware('auth');
     Route::post('update/{photo}', 'PhotoController@update')->name('update')->middleware('auth');
     Route::post('destroy/{photo}', 'PhotoController@destroy')->name('destroy')->middleware('auth');
