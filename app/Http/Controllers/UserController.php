@@ -16,9 +16,15 @@ class UserController extends Controller
             ->orderBy('created_at', 'DESC')
             ->paginate(10);
 
+        $followings = $user->followings->sortByDesc('created_at');
+        $followers = $user->followers->sortByDesc('created_at');
+
+        // dd($followings);
         return view('users.show', [
             'user' => $user,
             'photos' => $photos,
+            'followings' => $followings,
+            'followers' => $followers,
         ]);
     }
 
@@ -31,9 +37,13 @@ class UserController extends Controller
             ->orderBy('photos.created_at', 'DESC')
             ->paginate(10);
 
+            $followings = $user->followings->sortByDesc('created_at');
+            $followers = $user->followers->sortByDesc('created_at');
         return view('users.likes', [
             'user' => $user,
             'photos' => $photos,
+            'followings' => $followings,
+            'followers' => $followers,
         ]);
     }
 
