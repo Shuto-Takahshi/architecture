@@ -26,7 +26,7 @@ class PhotoStoreRequest extends FormRequest
         return [
             'photo_image' => 'required',
             'title' => 'required|max:50',
-            // 'body' => 'max|'
+            'body' => 'max:1000',
             'address' => 'required',
         ];
     }
@@ -36,6 +36,7 @@ class PhotoStoreRequest extends FormRequest
         return[
             'photo_image' => '写真',
             'title' => 'タイトル',
+            'body' => 'ストーリー',
             'address' => '住所',
         ];
     }

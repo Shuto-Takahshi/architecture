@@ -25,7 +25,7 @@ class PhotoUpdateRequest extends FormRequest
     {
         return [
             'title' => 'required|max:50',
-            // 'body' => 'max|'
+            'body' => 'max:1000',
             'address' => 'required',
         ];
     }
@@ -34,6 +34,7 @@ class PhotoUpdateRequest extends FormRequest
     {
         return[
             'title' => 'タイトル',
+            'body' => 'ストーリー',
             'address' => '住所',
         ];
     }
