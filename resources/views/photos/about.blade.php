@@ -1,5 +1,5 @@
 <div class="top">
-    <img class="" src="{{ asset('/images/top_image.jpg') }}" alt="image" style="width: 100%">
+    <img class="" src="{{ asset('/images/top_image.jpg') }}" alt="image">
     <div class="about">
         <h1 class="text-white">Welcome to ArchiGallery</h1>
         <h6 class="text-white text-break mb-4">ArchiGalleryは建築写真投稿サイトです。</h6>

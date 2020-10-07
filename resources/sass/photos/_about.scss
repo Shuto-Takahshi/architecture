@@ -1,5 +1,8 @@
 .top {
     position: relative;
+    img {
+        width: 100%;
+    }
 }
 .about {
     position: absolute;
@@ -14,7 +17,7 @@
 }
 @media (max-width: 767px) {
     .about {
-        top: 25%;
+        bottom: 5%;
         left: 10%;
         h1 {
             font-size: 24px;

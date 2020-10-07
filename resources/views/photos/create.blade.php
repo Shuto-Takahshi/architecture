@@ -19,7 +19,7 @@
                         <input class="form-control" type="text" name="title" value="{{ old('title') }}" placeholder="スポット名" aria-label="text">
                     </div>
                     <div class="form-group">
-                        <label for="body">ストーリー</label>
+                        <label for="body">ストーリー<small>(1000文字以内)</small></label>
                         <textarea class="form-control" name="body" rows="3" placeholder="スポットにまつわるストーリーを入力">{{ old('body') }}</textarea>
                     </div>
                     <div class="form-group">
