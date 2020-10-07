@@ -1,14 +1,13 @@
 @extends('layouts.app')
 @include('layouts.navbar')
 
-
 @section('content')
 <div class="photo-show">
     <div class="container py-md-4">
         <div class="row">
-            <div class="col p-0 mx-auto bg-white">
+            <div class="col p-0 mx-auto bg-white rounded-lg">
                 <div class="d-flex p-2">
-                    <a href="{{ route('users.show', ['user_id' => $photo->user_id]) }}" class="d-flex">
+                    <a href="{{ route('users.show', ['user_id' => $photo->user_id]) }}">
                         <img class="user-img border mr-1" src="{{ $photo->user->image_path ? asset('storage/user_images/' . $photo->user->image_path) : asset('/images/default_user_image.png')}}" alt="image">
                     </a>
                     <a href="{{ route('users.show', ['user_id' => $photo->user_id]) }}" class="my-auto text-dark user-name">{{ $photo->user->name }}</a>
@@ -16,30 +15,25 @@
                         @include('photos.dropdown')
                     @endif
                 </div>
-                <img class="photo-img mb-2" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image">
-                <div class="p-2">
+                <img class="photo-img" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image">
+                <div class="p-3">
                     <div class="d-flex mb-2">
-                        <photo-like
-                            :initial-is-liked-by='@json($photo->isLikedBy(Auth::user()))'
-                            :initial-count-likes='@json($photo->count_likes)'
-                            :authorized='@json(Auth::check())'
-                            endpoint="{{ route('photos.like', ['photo' => $photo]) }}"
-                        >
-                        </photo-like>
+                        @include('photos.like')
                         @include('photos.map')
-                        <div class="text-break ml-auto my-auto">{{ $photo->created_at->format('Y/m/d') }}</div>
+                        {{-- <a href="https://www.google.com/maps/place/v1/place?key=AIzaSyBLs8IhYFj1bkP0krvivOTMHiABp5dOIzI&q={{ $photo->address }}" target="_blank">地図</a> --}}
                     </div>
-                    <div class="mb-2 border-bottom">
+                    <div class="mb-3 border-bottom">
                         <div class="text-break photo-title">{{ $photo->title }}</div>
                         <div class="d-flex text-muted">
                             <i class="fas fa-map-marker-alt mr-1 my-auto"></i>
                             <div class="text-break" style="font-size: 14px">
                                 {{ $photo->address }}
                             </div>
+                            <div class="ml-auto my-auto">{{ $photo->created_at->format('Y/m/d') }}</div>
                         </div>
                     </div>
-                    <div class="px-3">
-                        <div class="text-break" style="font-size: 14px">{{ $photo->body }}</div>
+                    <div class="">
+                        <div class="text-break" style="line-height: 25px">{{ $photo->body }}</div>
                     </div>
                 </div>
             </div>
