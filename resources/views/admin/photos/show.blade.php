@@ -3,40 +3,41 @@
 
 @section('content')
 <div class="photo-show">
-    <div class="container">
+    <div class="container py-md-4">
         <div class="row">
-            <div class="col p-0 mx-auto bg-white">
+            <div class="col p-0 mx-auto bg-white rounded-lg">
                 <div class="d-flex p-2">
-                    <a href="{{ route('admin.users.show', ['user_id' => $photo->user_id]) }}" class="my-auto">
-                        <img class="user-img border mr-1" src="{{ $photo->user->image_path ? asset('storage/user_images/' . $photo->user->image_path) : asset('/images/default_user_image.png')}}" alt="image">
+                    <a href="{{ route('users.show', ['user_id' => $photo->user_id]) }}">
+                        <img class="user-img border mr-1" src="{{ $photo->user->image_path ? $photo->user->image_path : 'https://architecture-s3.s3-ap-northeast-1.amazonaws.com/default-images/user_image.png' }}" alt="image">
                     </a>
-                    <a href="{{ route('admin.users.show', ['user_id' => $photo->user_id]) }}" class="my-auto text-dark">{{ $photo->user->name }}</a>
-                    @include('admin.photos.dropdown')
+                    <a href="{{ route('users.show', ['user_id' => $photo->user_id]) }}" class="my-auto text-dark user-name">{{ $photo->user->name }}</a>
+                    @include('photos.dropdown')
                 </div>
-                <img class="photo-img" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image">
-                <div class="p-2">
-                    <div class="mb-2 my-auto">
+                <img class="photo-img" src="{{ $photo->image_path }}" alt="image">
+                <div class="p-3">
+                    <div class="d-flex mb-2">
+                        @include('photos.like')
+                        @include('photos.map')
+                        {{-- <a href="https://www.google.com/maps/place/v1/place?key=AIzaSyBLs8IhYFj1bkP0krvivOTMHiABp5dOIzI&q={{ $photo->address }}" target="_blank">地図</a> --}}
+                    </div>
+                    <div class="mb-3 border-bottom">
                         <div class="text-break photo-title">{{ $photo->title }}</div>
-                        <photo-like
-                            :initial-is-liked-by='@json($photo->isLikedBy(Auth::user()))'
-                            :initial-count-likes='@json($photo->count_likes)'
-                            :authorized='@json(Auth::check())'
-                            endpoint="{{ route('photos.like', ['photo' => $photo]) }}"
-                        >
-                        </photo-like>
-                    </div>
-                    <div class="mb-1">
-                    </div>
-                    <div class="mb-2">
-                        <div class="text-break">{{ $photo->body }}</div>
+                        <div class="d-flex text-muted">
+                            <i class="fas fa-map-marker-alt mr-1 my-auto"></i>
+                            <div class="text-break" style="font-size: 14px">
+                                {{ $photo->address }}
+                            </div>
+                            <div class="ml-auto my-auto">{{ $photo->created_at->format('Y/m/d') }}</div>
+                        </div>
                     </div>
                     <div class="">
-                        <i class="fas fa-map-marker-alt mr-2"></i>{{ $photo->address }}
+                        <div class="text-break" style="line-height: 25px">{{ $photo->body }}</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 @endsection
