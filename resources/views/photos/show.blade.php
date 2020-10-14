@@ -8,14 +8,14 @@
             <div class="col p-0 mx-auto bg-white rounded-lg">
                 <div class="d-flex p-2">
                     <a href="{{ route('users.show', ['user_id' => $photo->user_id]) }}">
-                        <img class="user-img border mr-1" src="{{ $photo->user->image_path ? asset('storage/user_images/' . $photo->user->image_path) : asset('/images/default_user_image.png')}}" alt="image">
+                        <img class="user-img border mr-1" src="{{ $photo->user->image_path ? $photo->user->image_path : 'https://architecture-s3.s3-ap-northeast-1.amazonaws.com/default-images/user_image.png' }}" alt="image">
                     </a>
                     <a href="{{ route('users.show', ['user_id' => $photo->user_id]) }}" class="my-auto text-dark user-name">{{ $photo->user->name }}</a>
                     @if( Auth::id() === $photo->user_id )
                         @include('photos.dropdown')
                     @endif
                 </div>
-                <img class="photo-img" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image">
+                <img class="photo-img" src="{{ $photo->image_path }}" alt="image">
                 <div class="p-3">
                     <div class="d-flex mb-2">
                         @include('photos.like')

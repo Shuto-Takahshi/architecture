@@ -3,7 +3,7 @@
         <div class="col">
             <div class="d-flex">
                 <a href="{{ route('users.show', ['user_id' => $user->id]) }}" class="mr-2">
-                    <img class="rounded-circle" src="{{ $user->image_path ? asset('storage/user_images/' . $user->image_path) : asset('/images/default_user_image.png')}}" alt="image" style="width: 40px">
+                    <img class="rounded-circle" src="{{ $user->image_path ? $user->image_path : 'https://architecture-s3.s3-ap-northeast-1.amazonaws.com/default-images/user_image.png' }}" alt="image" style="width: 40px">
                 </a>
                 <a href="{{ route('users.show', ['user_id' => $user->id]) }}" class="my-auto text-dark">
                     {{ $user->name }}
