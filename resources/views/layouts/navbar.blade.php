@@ -48,9 +48,9 @@
                         <div class="dropdown">
                             <button class="btn shadow-none p-0 mr-2 dropdown-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 @if (Auth::check() && isset(Auth::user()->image_path))
-                                    <img class="user-img border" src="{{ asset('storage/user_images/' . Auth::user()->image_path) }}"/>
+                                    <img class="user-img border" src="{{ Auth::user()->image_path }}"/>
                                 @else
-                                    <img class="user-img border" src="{{ asset('/images/default_user_image.png') }}" alt="image">
+                                    <img class="user-img border" src="{{ 'https://architecture-s3.s3-ap-northeast-1.amazonaws.com/default-images/user_image.png' }}" alt="image">
                                 @endif
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">

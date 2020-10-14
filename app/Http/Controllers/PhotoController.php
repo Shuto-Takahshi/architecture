@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Photo;
 use App\Http\Requests\PhotoStoreRequest;
 use App\Http\Requests\PhotoUpdateRequest;
+use Storage;
 
 class PhotoController extends Controller
 {
@@ -57,8 +58,11 @@ class PhotoController extends Controller
     {
         //
         $photo->fill($request->all());
-        $path = $request->photo_image->store('public/photo_images/');
-        $photo->image_path = basename($path);
+        // $path = $request->photo_image->store('public/photo_images/');
+        // $photo->image_path = basename($path);
+        $path = Storage::disk('s3')->putFile('photo-images',$request->photo_image,'public');
+        $photo->image_path = Storage::disk('s3')->url($path);
+
         $photo->user_id = $request->user()->id;
         $photo->save();
 

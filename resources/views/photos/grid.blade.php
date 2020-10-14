@@ -11,7 +11,7 @@
         <div class="grid-item">
             <div class="grid-img">
                 <a href="{{ route('photos.show', ['photo' => $photo]) }}">
-                    <img class="photo-img" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" alt="image">
+                    <img class="photo-img" src="{{ $photo->image_path }}" alt="image">
                 </a>
                 @include('photos.header')
                 @include('photos.footer')

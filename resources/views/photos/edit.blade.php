@@ -10,7 +10,7 @@
                 <form method="POST" action="{{ route('photos.update', ['photo' => $photo->id]) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <img class="photo-img" src="{{ asset('storage/photo_images/' . $photo->image_path) }}" style="width: 100%">
+                        <img class="photo-img" src="{{ $photo->image_path }}" style="width: 100%">
                     </div>
                     <div class="form-group">
                         <label for="title">タイトル</label>

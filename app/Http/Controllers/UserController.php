@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Photo;
 use Illuminate\Support\Facades\Auth;
+use Storage;
 
 class UserController extends Controller
 {
@@ -60,8 +61,10 @@ class UserController extends Controller
 
         $user = Auth::user();
         if ($request->user_image !=null) {
-            $path = $request->user_image->store('public/user_images');
-            $user->image_path = basename($path);
+            // $path = $request->user_image->store('public/user_images');
+            // $user->image_path = basename($path);
+            $path = Storage::disk('s3')->putFile('user-images',$request->user_image,'public');
+            $user->image_path = Storage::disk('s3')->url($path);
         }
         $user->name = $request->user_name;
         $user->body = $request->body;
