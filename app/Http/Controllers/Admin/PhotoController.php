@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Photo;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PhotoUpdateRequest;
+use Storage;
 
 
 class PhotoController extends Controller
