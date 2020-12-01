@@ -15,7 +15,7 @@ class PhotoControllerTest extends TestCase
     {
         $response = $this->get(route('photos.index'));
 
-        $response->assertStatus(200)
+        $response->assertStatus(400)
             ->assertViewIs('photos.index');
     }
 
