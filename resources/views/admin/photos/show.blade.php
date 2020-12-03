@@ -11,7 +11,7 @@
                         <img class="user-img border mr-1" src="{{ $photo->user->image_path ? $photo->user->image_path : 'https://architecture-s3.s3-ap-northeast-1.amazonaws.com/default-images/user_image.png' }}" alt="image">
                     </a>
                     <a href="{{ route('users.show', ['user_id' => $photo->user_id]) }}" class="my-auto text-dark user-name">{{ $photo->user->name }}</a>
-                    @include('photos.dropdown')
+                    @include('admin.photos.dropdown')
                 </div>
                 <img class="photo-img" src="{{ $photo->image_path }}" alt="image">
                 <div class="p-3">
