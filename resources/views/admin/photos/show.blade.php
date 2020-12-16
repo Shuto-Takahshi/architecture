@@ -18,7 +18,6 @@
                     <div class="d-flex mb-2">
                         @include('photos.like')
                         @include('photos.map')
-                        {{-- <a href="https://www.google.com/maps/place/v1/place?key=AIzaSyBLs8IhYFj1bkP0krvivOTMHiABp5dOIzI&q={{ $photo->address }}" target="_blank">地図</a> --}}
                     </div>
                     <div class="mb-3 border-bottom">
                         <div class="text-break photo-title">{{ $photo->title }}</div>
