@@ -20,9 +20,9 @@
             <div class="col">
                 <form class="form-inline" method="GET" action="{{ route('photos.index') }}">
                     @csrf
-                    <input class="form-control form-control-sm shadow-none border-right-0" name="keyword" value="{{ $keyword ?? '' }}" type="search" placeholder="検索" aria-label="Search">
-                    <button class="btn btn-primary p-0 m-0 " type="submit">
-                        <i class="fas fa-search text-center"></i>
+                    <input class="form-control form-control-sm shadow-none border-right-0" name="keyword" value="{{ $keyword ?? '' }}" type="search" placeholder="キーワードを入力" aria-label="Search">
+                    <button class="btn btn-primary p-0 m-0" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
                     </button>
                 </form>
             </div>

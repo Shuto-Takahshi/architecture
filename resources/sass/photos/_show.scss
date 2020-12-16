@@ -13,5 +13,15 @@
     .photo-title {
         font-size: 28px;
     }
+    .dropdown-menu {
+        a {
+            font-size: 14px;
+            color: black;
+        }
+    }
+    .dropdown-item:active {
+        background-color: white;
+    }
+
 }
 
