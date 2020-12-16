@@ -41,15 +41,15 @@ Route::prefix('users')->name('users.')->group(function () {
 
 
 // 管理者
-Route::group(['prefix' => 'admin'], function() {
+Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('/', function () { return redirect('/admin/home'); });
-    Route::get('login', 'Admin\LoginController@showLoginForm')->name('admin.login');
+    Route::get('login', 'Admin\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Admin\LoginController@login');
 });
-
-Route::group(['prefix' => 'admin', 'name' => 'admin.', 'middleware' => 'auth:admin'], function() {
-    Route::post('logout', 'Admin\LoginController@logout')->name('admin.logout');
-    Route::get('home', 'Admin\HomeController@index')->name('admin.home');
+// Route::group(['prefix' => 'admin', 'name' => 'admin.', 'middleware' => 'auth:admin'], function() {
+Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function() {
+    Route::post('logout', 'Admin\LoginController@logout')->name('logout');
+    Route::get('home', 'Admin\HomeController@index')->name('home');
 
     Route::prefix('photos')->name('photos.')->group(function () {
         Route::get('index', 'Admin\PhotoController@index')->name('index');
@@ -61,7 +61,7 @@ Route::group(['prefix' => 'admin', 'name' => 'admin.', 'middleware' => 'auth:adm
 
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('index', 'Admin\UserController@index')->name('index');
-        Route::get('show/{user_id}', 'Admin\UserController@show')->name('show');
+        Route::get('{user_id}', 'Admin\UserController@show')->name('show');
         Route::get('edit/{user_id}', 'Admin\UserController@edit')->name('edit');
         Route::post('update/{user_id}', 'Admin\UserController@update')->name('update');
         Route::post('destroy/{user_id}', 'Admin\UserController@destroy')->name('destroy');
