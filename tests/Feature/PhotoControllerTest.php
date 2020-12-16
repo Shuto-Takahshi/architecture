@@ -33,7 +33,7 @@ class PhotoControllerTest extends TestCase
         $response = $this->actingAs($user)
             ->get(route('photos.create'));
 
-        $response->assertStatus(200)
+        $response->assertStatus(302)
             ->assertViewIs('photos.create');
     }
 }
