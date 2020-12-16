@@ -27,7 +27,6 @@ Route::prefix('photos')->name('photos.')->group(function () {
     Route::put('{photo}/like', 'PhotoController@like')->name('like')->middleware('auth');
     Route::delete('{photo}/like', 'PhotoController@unlike')->name('unlike')->middleware('auth');
 });
-// Route::resource('/photos', 'PhotoController')->except(['index','show'])->middleware('auth');
 
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('{user_id}', 'UserController@show')->name('show');
@@ -40,11 +39,6 @@ Route::prefix('users')->name('users.')->group(function () {
     });
 });
 
-// Route::group(['prefix' => 'contact'], function() {
-//     Route::get('index', 'ContactController@index')->name('contact.index');
-//     Route::post('confirm', 'ContactController@confirm')->name('contact.confirm');
-//     Route::post('complete', 'ContactController@complete')->name('contact.complete');
-// });
 
 // 管理者
 Route::group(['prefix' => 'admin'], function() {
@@ -53,15 +47,10 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('login', 'Admin\LoginController@login');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
+Route::group(['prefix' => 'admin', 'name' => 'admin.', 'middleware' => 'auth:admin'], function() {
     Route::post('logout', 'Admin\LoginController@logout')->name('admin.logout');
     Route::get('home', 'Admin\HomeController@index')->name('admin.home');
-});
 
-Route::prefix('admin')->name('admin.')->group(function () {
-
-
-    // Route::resource('/photos', 'PhotoController')->middleware('auth')->except(['create','store']);
     Route::prefix('photos')->name('photos.')->group(function () {
         Route::get('index', 'Admin\PhotoController@index')->name('index');
         Route::get('show/{photo}', 'Admin\PhotoController@show')->name('show');
@@ -77,14 +66,4 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('update/{user_id}', 'Admin\UserController@update')->name('update');
         Route::post('destroy/{user_id}', 'Admin\UserController@destroy')->name('destroy');
     });
-
-    // Route::prefix('contacts')->name('contacts.')->group(function () {
-    //     Route::get('index', 'Admin\ContactController@index')->name('index');
-    //     Route::get('show/{id}', 'Admin\ContactController@show')->name('show');
-    //     Route::post('reply', 'Admin\ContactController@reply')->name('reply');
-    //     Route::post('confirm', 'Admin\ContactController@confirm')->name('confirm');
-    //     Route::post('complete', 'Admin\ContactController@complete')->name('complete');
-    // });
 });
-
-
