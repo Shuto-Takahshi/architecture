@@ -13,17 +13,10 @@ class PhotoControllerTest extends TestCase
 
     public function testIndex()
     {
-        // $response = $this->get(route('photos.index'));
+        $response = $this->get(route('photos.index'));
 
-        // $response->assertStatus(302);
+        $response->assertStatus(302);
             // ->assertViewIs('photos.index');
-        $user = factory(User::class)->create();
-
-        $response = $this->actingAs($user)
-            ->get(route('photos.index'));
-
-        $response->assertStatus(200)
-            ->assertViewIs('photos.index');
     }
 
     public function testGuestCreate()
