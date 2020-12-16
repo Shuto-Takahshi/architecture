@@ -13,12 +13,7 @@ class PhotoControllerTest extends TestCase
 
     public function testIndex()
     {
-        $user = factory(User::class)->create();
-
-        $response = $this
-            ->actingAs($user) // 変更(ファクトリで作ったユーザーデータでログイン中状態を作る)
-            ->get(route('photos.index'));
-        // $response = $this->get(route('photos.index'));
+        $response = $this->get(route('photos.index'));
 
         $response->assertStatus(302)
             ->assertViewIs('photos.index');
